@@ -97,16 +97,20 @@
 	<!-- ALGORITHM SETTINGS -->
 	<!-- Use 'instance' xml tag to pre-configure algorithms without running 
 		them -->
-<comment>
 	<algorithm type="AlgorithmConfiguration">
 		<algorithms>
 			<algorithm type="ArborClustering" instance="MainClustering">
 				<AdditionalConnectionTools>
 					<tool type="TrackDrivenSeeding">
+		                <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
 						<MaxConnectionPseudoLayer> 3 </MaxConnectionPseudoLayer>
 					</tool>
 					<tool type="ConnectorSeeding">
+		              <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
 					  <ShouldDiscriminateConnectedHits>false</ShouldDiscriminateConnectedHits>
+					  <MaxTransverseDistanceFine> 30. </MaxTransverseDistanceFine>
+					  <!--MaxConnectionAngleFine> 1.5 </MaxConnectionAngleFine-->
+					  <MaxConnectionAngleFine> 1.5 </MaxConnectionAngleFine>
 					</tool>
 					<tool type="ConnectorCleaning" />
 				</AdditionalConnectionTools>
@@ -195,7 +199,6 @@
 			</algorithm>
 		</algorithms>
 	</algorithm>
-</comment>
 
 	<!-- Select tracks and hits to use for clustering -->
 	<algorithm type="CaloHitPreparation"/>
@@ -210,15 +213,14 @@
 	</algorithm>
 
 	<algorithm type="VisualMonitoring">
-		<ShowCurrentConnectors>true</ShowCurrentConnectors>
+		<ShowCurrentConnectors>false</ShowCurrentConnectors>
 		<ConnectorLevel>Clusters</ConnectorLevel>
-		<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+		<ShowCurrentMCParticles>false</ShowCurrentMCParticles>
 		<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-		<ShowCurrentTracks>true</ShowCurrentTracks>
-		<ShowCurrentClusters>true</ShowCurrentClusters>
+		<ShowCurrentTracks>false</ShowCurrentTracks>
+		<ShowCurrentClusters>false</ShowCurrentClusters>
 		<ShowCurrentPfos>false</ShowCurrentPfos>
 		<ShowCurrentVertices>false</ShowCurrentVertices>
-		<ClusterListNames>PhotonClusters nonPhotonClusters</ClusterListNames>
 		<HitColors>iterate</HitColors>
 		<DisplayEvent>true</DisplayEvent>
 		<ShowDetector>true</ShowDetector>
@@ -227,17 +229,19 @@
 		<ShowAssociatedTracks>false</ShowAssociatedTracks>
 	</algorithm>
 
-<comment>
     <!-- Real clustering starts here /-->
 	<!-- Arbor photon clustering as basic clustering with photon id -->
    <algorithm type="PhotonReconstruction">
     <algorithm type="ArborClustering" description="ClusterFormation">
       <ECalConnectionTools>
         <tool type="TrackDrivenSeeding">
+		  <ShouldUseIsolatedHits> false</ShouldUseIsolatedHits>
           <MaxConnectionPseudoLayer> 3 </MaxConnectionPseudoLayer>
         </tool>
         <tool type="ConnectorSeeding">
+		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits>false</ShouldDiscriminateConnectedHits>
+		  <MaxConnectionAngleFine> 1.5 </MaxConnectionAngleFine>
         </tool>
         <tool type="ConnectorCleaning" />
       </ECalConnectionTools>
@@ -252,7 +256,7 @@
           <tool type="CaloHitMerging" description="CaloHitMerging" />
         </algorithm>
         <algorithm type="SurroundingHitsMerging">
-          <ShouldMergeIsolatedHits>true</ShouldMergeIsolatedHits>
+          <ShouldMergeIsolatedHits>false</ShouldMergeIsolatedHits>
           <tool type="CaloHitMerging" description="CaloHitMerging">
             <MaxCaloHitDistanceFine>25.</MaxCaloHitDistanceFine>
             <MaxCaloHitDistanceCoarse>0.</MaxCaloHitDistanceCoarse>
@@ -260,18 +264,20 @@
         </algorithm>
       </associationAlgorithms>
     </algorithm>
+<comment>
+</comment>
     <ClusterListName>PhotonClusters</ClusterListName>
     <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
     <!--ReplaceCurrentClusterList>true</ReplaceCurrentClusterList-->
   </algorithm>
 
 	<algorithm type="VisualMonitoring">
-		<ShowCurrentConnectors>true</ShowCurrentConnectors>
+		<ShowCurrentConnectors>false</ShowCurrentConnectors>
 		<ConnectorLevel>Clusters</ConnectorLevel>
-		<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+		<ShowCurrentMCParticles>false</ShowCurrentMCParticles>
 		<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-		<ShowCurrentTracks>true</ShowCurrentTracks>
-		<ShowCurrentClusters>true</ShowCurrentClusters>
+		<ShowCurrentTracks>false</ShowCurrentTracks>
+		<ShowCurrentClusters>false</ShowCurrentClusters>
 		<ShowCurrentPfos>false</ShowCurrentPfos>
 		<ShowCurrentVertices>false</ShowCurrentVertices>
 		<ClusterListNames>PhotonClusters nonPhotonClusters</ClusterListNames>
@@ -283,29 +289,8 @@
 		<ShowAssociatedTracks>false</ShowAssociatedTracks>
 	</algorithm>
 
-	<algorithm type="CheatingClusterCleaning" />
-
-	<algorithm type="VisualMonitoring">
-		<ShowCurrentConnectors>true</ShowCurrentConnectors>
-		<ConnectorLevel>Clusters</ConnectorLevel>
-		<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
-		<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-		<ShowCurrentTracks>true</ShowCurrentTracks>
-		<ShowCurrentClusters>true</ShowCurrentClusters>
-		<ShowCurrentPfos>false</ShowCurrentPfos>
-		<ShowCurrentVertices>false</ShowCurrentVertices>
-		<ClusterListNames>PfoCreation</ClusterListNames>
-		<HitColors>iterate</HitColors>
-		<DisplayEvent>true</DisplayEvent>
-		<ShowDetector>true</ShowDetector>
-		<DetectorView>""</DetectorView>
-		<ShowOnlyAvailable>true</ShowOnlyAvailable>
-		<ShowAssociatedTracks>false</ShowAssociatedTracks>
-	</algorithm>
-</comment>
 
 
-<comment>
 	<!-- Remove hits from photons that are in track paths -->
 	<algorithm type="NearbyTrackPhotonRemoval">
 		<PhotonClusterListName>PhotonClusters</PhotonClusterListName>
@@ -318,6 +303,23 @@
 		<ClusterListName>PrimaryTrees</ClusterListName>
 		<ReplaceCurrentClusterList>true</ReplaceCurrentClusterList>
 	</algorithm>
-</comment>
+
+	<algorithm type="VisualMonitoring">
+		<ShowCurrentConnectors>false</ShowCurrentConnectors>
+		<ConnectorLevel>Clusters</ConnectorLevel>
+		<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+		<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+		<ShowCurrentTracks>false</ShowCurrentTracks>
+		<ShowCurrentClusters>false</ShowCurrentClusters>
+		<ShowCurrentPfos>false</ShowCurrentPfos>
+		<ShowCurrentVertices>false</ShowCurrentVertices>
+		<ClusterListNames>PhotonClusters PrimaryTrees</ClusterListNames>
+		<HitColors>iterate</HitColors>
+		<DisplayEvent>true</DisplayEvent>
+		<ShowDetector>true</ShowDetector>
+		<DetectorView>""</DetectorView>
+		<ShowOnlyAvailable>true</ShowOnlyAvailable>
+		<ShowAssociatedTracks>false</ShowAssociatedTracks>
+	</algorithm>
 
 </pandora>
