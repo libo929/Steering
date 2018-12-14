@@ -229,68 +229,83 @@
 		<ShowAssociatedTracks>false</ShowAssociatedTracks>
 	</algorithm>
 
-    <!-- Real clustering starts here /-->
-	<!-- Arbor photon clustering as basic clustering with photon id -->
+   <!-- clustering starts here /-->
+   <!-- photon clustering as basic clustering with photon id -->
    <algorithm type="PhotonReconstruction">
+    <!-- clustering in calorimeters -->
     <algorithm type="ArborClustering" description="ClusterFormation">
-      <ECalConnectionTools>
+      <AdditionalConnectionTools>
         <tool type="TrackDrivenSeeding">
-		  <ShouldUseIsolatedHits> false</ShouldUseIsolatedHits>
-          <MaxConnectionPseudoLayer> 3 </MaxConnectionPseudoLayer>
+		  <MaxInitialPseudoLayer> 3 </MaxInitialPseudoLayer> <!-- default: 3 -->
+          <MaxConnectionPseudoLayer> 5 </MaxConnectionPseudoLayer>
+		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine> <!-- 3 * 5 mm -->
+		  <MaxTransverseDistanceCoarse> 30. </MaxTransverseDistanceCoarse> <!-- 3 * 10 mm -->
+		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
         </tool>
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		</tool>
+      </AdditionalConnectionTools>
+      <ECalConnectionTools>
         <tool type="ConnectorSeeding">
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-          <ShouldDiscriminateConnectedHits>false</ShouldDiscriminateConnectedHits>
-		  <MaxConnectionAngleFine> 1.5 </MaxConnectionAngleFine>
+          <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
+		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
+		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
         </tool>
-        <tool type="ConnectorCleaning" />
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		</tool>
       </ECalConnectionTools>
     </algorithm>
-    <algorithm type="TopologicalAssociationParent" description="ClusterAssociation" >
-      <associationAlgorithms>
-        <algorithm type="ClosebySeedMerging">
-          <MergeHCalSeedClusters>false</MergeHCalSeedClusters>
-        </algorithm>
-        <algorithm type="TrackClusterAssociation"/>
-        <algorithm type="FragmentRemoval">
-          <tool type="CaloHitMerging" description="CaloHitMerging" />
-        </algorithm>
-        <algorithm type="SurroundingHitsMerging">
-          <ShouldMergeIsolatedHits>false</ShouldMergeIsolatedHits>
-          <tool type="CaloHitMerging" description="CaloHitMerging">
-            <MaxCaloHitDistanceFine>25.</MaxCaloHitDistanceFine>
-            <MaxCaloHitDistanceCoarse>0.</MaxCaloHitDistanceCoarse>
-          </tool>
-        </algorithm>
-      </associationAlgorithms>
-    </algorithm>
-<comment>
-</comment>
-    <ClusterListName>PhotonClusters</ClusterListName>
+    <PhotonClusterListName>PhotonClusters</PhotonClusterListName>
+    <NonPhotonClusterListName>NonPhotonClusters</NonPhotonClusterListName>
     <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
-    <!--ReplaceCurrentClusterList>true</ReplaceCurrentClusterList-->
   </algorithm>
 
-	<algorithm type="VisualMonitoring">
-		<ShowCurrentConnectors>false</ShowCurrentConnectors>
-		<ConnectorLevel>Clusters</ConnectorLevel>
-		<ShowCurrentMCParticles>false</ShowCurrentMCParticles>
-		<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-		<ShowCurrentTracks>false</ShowCurrentTracks>
-		<ShowCurrentClusters>false</ShowCurrentClusters>
-		<ShowCurrentPfos>false</ShowCurrentPfos>
-		<ShowCurrentVertices>false</ShowCurrentVertices>
-		<ClusterListNames>PhotonClusters nonPhotonClusters</ClusterListNames>
-		<HitColors>iterate</HitColors>
-		<DisplayEvent>true</DisplayEvent>
-		<ShowDetector>true</ShowDetector>
-		<DetectorView>""</DetectorView>
-		<ShowOnlyAvailable>true</ShowOnlyAvailable>
-		<ShowAssociatedTracks>false</ShowAssociatedTracks>
-	</algorithm>
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>false</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<ClusterListNames>PhotonClusters NonPhotonClusters</ClusterListNames>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>false</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
+
+<comment>
+  <algorithm type="TopologicalAssociationParent" description="ClusterAssociation" >
+    <associationAlgorithms>
+      <algorithm type="ClosebySeedMerging">
+        <MergeHCalSeedClusters>false</MergeHCalSeedClusters>
+      </algorithm>
+      <algorithm type="TrackClusterAssociation"/>
+      <algorithm type="FragmentRemoval">
+        <tool type="CaloHitMerging" description="CaloHitMerging" />
+      </algorithm>
+      <algorithm type="SurroundingHitsMerging">
+        <ShouldMergeIsolatedHits>false</ShouldMergeIsolatedHits>
+        <tool type="CaloHitMerging" description="CaloHitMerging">
+          <MaxCaloHitDistanceFine>25.</MaxCaloHitDistanceFine>
+          <MaxCaloHitDistanceCoarse>0.</MaxCaloHitDistanceCoarse>
+        </tool>
+      </algorithm>
+    </associationAlgorithms>
+  </algorithm>
+</comment>
 
 
-
+<comment>
 	<!-- Remove hits from photons that are in track paths -->
 	<algorithm type="NearbyTrackPhotonRemoval">
 		<PhotonClusterListName>PhotonClusters</PhotonClusterListName>
@@ -321,5 +336,6 @@
 		<ShowOnlyAvailable>true</ShowOnlyAvailable>
 		<ShowAssociatedTracks>false</ShowAssociatedTracks>
 	</algorithm>
+</comment>
 
 </pandora>
