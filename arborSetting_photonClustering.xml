@@ -3,7 +3,7 @@
 
 <pandora>
 	<!-- GLOBAL SETTINGS -->
-	<IsMonitoringEnabled>false</IsMonitoringEnabled>
+	<IsMonitoringEnabled>true</IsMonitoringEnabled>
 	<ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
 	<ShouldCollapseMCParticlesToPfoTarget>true</ShouldCollapseMCParticlesToPfoTarget>
 
@@ -232,9 +232,10 @@
    <!-- clustering starts here /-->
    <!-- photon clustering as basic clustering with photon id -->
    <algorithm type="PhotonReconstruction">
-    <!-- clustering in calorimeters -->
+    <!-- Clustering setup in calorimeters -->
     <algorithm type="ArborClustering" description="ClusterFormation">
-       <AdditionalConnectionTools>
+	   <ConnectionTools>
+	    <!-- Step 1: track driven seeding in ECAL + HCAL -->
         <tool type="TrackDrivenSeeding">
 		  <MaxInitialPseudoLayer> 3 </MaxInitialPseudoLayer> <!-- default: 3 -->
           <MaxConnectionPseudoLayer> 4 </MaxConnectionPseudoLayer>
@@ -246,9 +247,10 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
-      </AdditionalConnectionTools>
-      <ECalConnectionTools>
+
+	    <!-- Step 2: connector seeding in ECAL -->
         <tool type="ConnectorSeeding">
+		  <CaloHitCollection> 1 </CaloHitCollection>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
 		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
@@ -258,8 +260,8 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
-      </ECalConnectionTools>
-      <HCalConnectionTools>
+
+	    <!-- Step 3: connection from ECAL to HCAL -->
         <tool type="ConnectorPlus">
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
@@ -270,9 +272,10 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
-      </HCalConnectionTools>
-	  <HCalConnectionTools2>
+
+	    <!-- Step 4: connector seeding in HCAL -->
         <tool type="ConnectorSeeding">
+		  <CaloHitCollection> 2 </CaloHitCollection>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
 		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
@@ -282,11 +285,14 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
-	  </HCalConnectionTools2>
+	  </ConnectionTools>
     </algorithm>
+    <!-- End of clustering in calorimeters -->
+
     <PhotonClusterListName>PhotonClusters</PhotonClusterListName>
     <NonPhotonClusterListName>NonPhotonClusters</NonPhotonClusterListName>
     <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
+
   </algorithm>
 
   <algorithm type="VisualMonitoring">
