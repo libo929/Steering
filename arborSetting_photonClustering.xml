@@ -3,7 +3,7 @@
 
 <pandora>
 	<!-- GLOBAL SETTINGS -->
-	<IsMonitoringEnabled>true</IsMonitoringEnabled>
+	<IsMonitoringEnabled>false</IsMonitoringEnabled>
 	<ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
 	<ShouldCollapseMCParticlesToPfoTarget>true</ShouldCollapseMCParticlesToPfoTarget>
 
@@ -234,10 +234,10 @@
    <algorithm type="PhotonReconstruction">
     <!-- clustering in calorimeters -->
     <algorithm type="ArborClustering" description="ClusterFormation">
-      <AdditionalConnectionTools>
+       <AdditionalConnectionTools>
         <tool type="TrackDrivenSeeding">
 		  <MaxInitialPseudoLayer> 3 </MaxInitialPseudoLayer> <!-- default: 3 -->
-          <MaxConnectionPseudoLayer> 5 </MaxConnectionPseudoLayer>
+          <MaxConnectionPseudoLayer> 4 </MaxConnectionPseudoLayer>
 		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine> <!-- 3 * 5 mm -->
 		  <MaxTransverseDistanceCoarse> 30. </MaxTransverseDistanceCoarse> <!-- 3 * 10 mm -->
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
@@ -259,6 +259,30 @@
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
       </ECalConnectionTools>
+      <HCalConnectionTools>
+        <tool type="ConnectorPlus">
+		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
+          <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
+		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
+		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
+        </tool>
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		</tool>
+      </HCalConnectionTools>
+	  <HCalConnectionTools2>
+        <tool type="ConnectorSeeding">
+		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
+          <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
+		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
+		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
+        </tool>
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		</tool>
+	  </HCalConnectionTools2>
     </algorithm>
     <PhotonClusterListName>PhotonClusters</PhotonClusterListName>
     <NonPhotonClusterListName>NonPhotonClusters</NonPhotonClusterListName>
