@@ -3,7 +3,7 @@
 
 <pandora>
 	<!-- GLOBAL SETTINGS -->
-	<IsMonitoringEnabled>true</IsMonitoringEnabled>
+	<IsMonitoringEnabled>false</IsMonitoringEnabled>
 	<ShouldDisplayAlgorithmInfo>true</ShouldDisplayAlgorithmInfo>
 	<ShouldCollapseMCParticlesToPfoTarget>true</ShouldCollapseMCParticlesToPfoTarget>
 
@@ -215,7 +215,7 @@
 	<algorithm type="VisualMonitoring">
 		<ShowCurrentConnectors>false</ShowCurrentConnectors>
 		<ConnectorLevel>Clusters</ConnectorLevel>
-		<ShowCurrentMCParticles>false</ShowCurrentMCParticles>
+		<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
 		<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
 		<ShowCurrentTracks>false</ShowCurrentTracks>
 		<ShowCurrentClusters>false</ShowCurrentClusters>
@@ -237,10 +237,10 @@
 	   <ConnectionTools>
 	    <!-- Step 1: track driven seeding in ECAL + HCAL -->
         <tool type="TrackDrivenSeeding">
-		  <MaxInitialPseudoLayer> 3 </MaxInitialPseudoLayer> <!-- default: 3 -->
+		  <MaxInitialPseudoLayer> 8 </MaxInitialPseudoLayer> <!-- default: 3 -->
           <MaxConnectionPseudoLayer> 4 </MaxConnectionPseudoLayer>
-		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine> <!-- 3 * 5 mm -->
-		  <MaxTransverseDistanceCoarse> 30. </MaxTransverseDistanceCoarse> <!-- 3 * 10 mm -->
+		  <MaxTransverseDistanceFine> 7.5 </MaxTransverseDistanceFine> <!-- 1.5 * 5 mm -->
+		  <MaxTransverseDistanceCoarse> 15. </MaxTransverseDistanceCoarse> <!-- 1.5 * 10 mm -->
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
         </tool>
         <tool type="ConnectorCleaning">
@@ -248,11 +248,12 @@
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
 
+<comment>
 	    <!-- Step 2: connector seeding in ECAL -->
         <tool type="ConnectorSeeding">
 		  <CaloHitCollection> 1 </CaloHitCollection>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-          <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
+          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
 		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
 		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
         </tool>
@@ -285,8 +286,11 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
+</comment>
 	  </ConnectionTools>
     </algorithm>
+
+	    <!-- Step x: MUON; check endcap, ring... -->
     <!-- End of clustering in calorimeters -->
 
     <PhotonClusterListName>PhotonClusters</PhotonClusterListName>
