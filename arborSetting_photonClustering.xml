@@ -248,9 +248,9 @@
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
 
-<comment>
 	    <!-- Step 2: connector seeding in ECAL -->
         <tool type="ConnectorSeeding">
+		  <MaxPseudoLayerConnection> 8 </MaxPseudoLayerConnection>
 		  <CaloHitCollection> 1 </CaloHitCollection>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
@@ -286,7 +286,6 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
-</comment>
 	  </ConnectionTools>
     </algorithm>
 
