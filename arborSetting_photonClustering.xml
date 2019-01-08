@@ -286,6 +286,25 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
+
+	    <!-- Step 5: connector seeding in HCAL -->
+        <tool type="NearbyHitsConnecting"/>
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		</tool>
+
+	    <!-- Step 6: connector seeding in HCAL 2nd -->
+        <tool type="NearbyHitsConnecting">
+			<MetricType> 0 </MetricType>
+		    <EpsDBSCAN> 60. </EpsDBSCAN>
+			<MinPointDBSCAN> 4 </MinPointDBSCAN>
+		</tool>
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		</tool>
+
 	  </ConnectionTools>
     </algorithm>
 
