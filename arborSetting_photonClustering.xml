@@ -317,6 +317,11 @@
 
   </algorithm>
 
+  <algorithm type="ClusterPurity">
+    <ListType> 0 </ListType>
+    <ListNames>PhotonClusters NonPhotonClusters</ListNames>
+  </algorithm>
+
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>

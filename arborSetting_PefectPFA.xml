@@ -753,6 +753,12 @@
 	</algorithm>
 
 
+    <algorithm type="ClusterPurity">
+      <ListType> 1 </ListType>
+      <ListNames>PerfectPfos</ListNames>
+    </algorithm>
+
+
 	<algorithm type="VisualMonitoring">
 		<ShowCurrentConnectors>true</ShowCurrentConnectors>
 		<ConnectorLevel>Clusters</ConnectorLevel>
