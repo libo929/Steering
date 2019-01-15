@@ -212,6 +212,7 @@
 		<ReplacementCaloHitListName>CaloHits</ReplacementCaloHitListName>
 	</algorithm>
 
+<comment>
 	<algorithm type="VisualMonitoring">
 		<ShowCurrentConnectors>false</ShowCurrentConnectors>
 		<ConnectorLevel>Clusters</ConnectorLevel>
@@ -228,6 +229,7 @@
 		<ShowOnlyAvailable>true</ShowOnlyAvailable>
 		<ShowAssociatedTracks>false</ShowAssociatedTracks>
 	</algorithm>
+</comment>
 
    <!-- clustering starts here /-->
    <!-- photon clustering as basic clustering with photon id -->
@@ -235,6 +237,7 @@
     <!-- Clustering setup in calorimeters -->
     <algorithm type="ArborClustering" description="ClusterFormation">
 	   <ConnectionTools>
+<comment>
 	    <!-- Step 1: track driven seeding in ECAL + HCAL -->
         <tool type="TrackDrivenSeeding">
 		  <MaxInitialPseudoLayer> 8 </MaxInitialPseudoLayer> <!-- default: 3 -->
@@ -264,39 +267,47 @@
 
 	    <!-- Step 3: connection from ECAL to HCAL -->
         <tool type="ConnectorPlus">
+		  <MaxBackLayer> 5 </MaxBackLayer>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-          <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
+          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
 		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
 		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
         </tool>
         <tool type="ConnectorCleaning">
-		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
-		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		  <OrderParameterAnglePower> 1. </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 5. </OrderParameterDistancePower>
 		</tool>
+</comment>
 
 	    <!-- Step 4: connector seeding in HCAL -->
         <tool type="ConnectorSeeding">
 		  <CaloHitCollection> 2 </CaloHitCollection>
+		  <MaxCollectorLength> 40 </MaxCollectorLength>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-          <ShouldDiscriminateConnectedHits> true </ShouldDiscriminateConnectedHits>
+          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
 		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
 		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
         </tool>
         <tool type="ConnectorCleaning">
-		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
-		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 7 </OrderParameterDistancePower>
+		  <BackwardConnectorWeight> 2. </BackwardConnectorWeight>
+		  <ForwardConnectorWeight> 1. </ForwardConnectorWeight>
+		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
+		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
 		</tool>
 
-	    <!-- Step 5: connector seeding in HCAL -->
-        <tool type="NearbyHitsConnecting"/>
+<comment>
+	    <!-- Step 5: nearby hits connecting -->
+        <tool type="NearbyHitsConnecting"/> <!-- default MetricType 1: 4D (x, y, z, layer) -->
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
 
-	    <!-- Step 6: connector seeding in HCAL 2nd -->
+	    <!-- Step 6: nearby hits connecting -->
         <tool type="NearbyHitsConnecting">
-			<MetricType> 0 </MetricType>
+			<MetricType> 0 </MetricType>   <!-- 3D metric -->
 		    <EpsDBSCAN> 60. </EpsDBSCAN>
 			<MinPointDBSCAN> 4 </MinPointDBSCAN>
 		</tool>
@@ -304,6 +315,7 @@
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
+</comment>
 
 	  </ConnectionTools>
     </algorithm>
@@ -334,7 +346,7 @@
   	<ClusterListNames>PhotonClusters NonPhotonClusters</ClusterListNames>
   	<HitColors>iterate</HitColors>
   	<DisplayEvent>true</DisplayEvent>
-  	<ShowDetector>false</ShowDetector>
+  	<ShowDetector>true</ShowDetector>
   	<DetectorView>""</DetectorView>
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
