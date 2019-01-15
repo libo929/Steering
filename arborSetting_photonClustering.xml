@@ -282,11 +282,14 @@
 	    <!-- Step 4: connector seeding in HCAL -->
         <tool type="ConnectorSeeding">
 		  <CaloHitCollection> 2 </CaloHitCollection>
-		  <MaxCollectorLength> 40 </MaxCollectorLength>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
-		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
-		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
+		  <MaxPseudoLayerConnection> 2 </MaxPseudoLayerConnection>
+		  <MaxCollectorLength> 60. </MaxCollectorLength>
+		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine>
+		  <MaxTransverseDistanceCoarse> 40. </MaxTransverseDistanceCoarse> <!-- 4 * 10 mm -->
+		  <MaxConnectionAngleFine> 0.5 </MaxConnectionAngleFine>
+		  <MaxConnectionAngleCoarse> 1.0 </MaxConnectionAngleCoarse>
         </tool>
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
