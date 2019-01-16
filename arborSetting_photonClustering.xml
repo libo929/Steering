@@ -237,10 +237,13 @@
     <!-- Clustering setup in calorimeters -->
     <algorithm type="ArborClustering" description="ClusterFormation">
 	   <ConnectionTools>
-<comment>
 	    <!-- Step 1: track driven seeding in ECAL + HCAL -->
         <tool type="TrackDrivenSeeding">
 		  <MaxInitialPseudoLayer> 8 </MaxInitialPseudoLayer> <!-- default: 3 -->
+		  <InitialHitSearchRange> 65. </InitialHitSearchRange>
+		  <HitSearchRangeFine> 30. </HitSearchRangeFine>
+		  <HitSearchRangeCoarse> 60. </HitSearchRangeCoarse>
+		  <HitSearchRangeAtBoundary> 160. </HitSearchRangeAtBoundary>
           <MaxConnectionPseudoLayer> 4 </MaxConnectionPseudoLayer>
 		  <MaxTransverseDistanceFine> 7.5 </MaxTransverseDistanceFine> <!-- 1.5 * 5 mm -->
 		  <MaxTransverseDistanceCoarse> 15. </MaxTransverseDistanceCoarse> <!-- 1.5 * 10 mm -->
@@ -249,8 +252,13 @@
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
+		  <BackwardConnectorWeight> 2. </BackwardConnectorWeight>
+		  <ForwardConnectorWeight> 1. </ForwardConnectorWeight>
+		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
+		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
 		</tool>
 
+<comment>
 	    <!-- Step 2: connector seeding in ECAL -->
         <tool type="ConnectorSeeding">
 		  <MaxPseudoLayerConnection> 8 </MaxPseudoLayerConnection>
@@ -277,7 +285,6 @@
 		  <OrderParameterAnglePower> 1. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 5. </OrderParameterDistancePower>
 		</tool>
-</comment>
 
 	    <!-- Step 4: connector seeding in HCAL -->
         <tool type="ConnectorSeeding">
@@ -299,6 +306,7 @@
 		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
 		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
 		</tool>
+</comment>
 
 <comment>
 	    <!-- Step 5: nearby hits connecting -->
