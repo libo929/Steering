@@ -250,6 +250,7 @@
 		  <MaxDistanceToTrackFine> 10. </MaxDistanceToTrackFine>
 		  <MaxDistanceToTrackCoarse> 20. </MaxDistanceToTrackCoarse>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
+		  <ConnectorCreationStage> 1 </ConnectorCreationStage>
         </tool>
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
