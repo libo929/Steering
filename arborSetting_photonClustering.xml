@@ -237,7 +237,7 @@
     <!-- Clustering setup in calorimeters -->
     <algorithm type="ArborClustering" description="ClusterFormation">
 	   <ConnectionTools>
-	    <!-- Step 1: track driven seeding in ECAL + HCAL -->
+	    <!-- track driven seeding in ECAL + HCAL -->
         <tool type="TrackDrivenSeeding">
 		  <MaxInitialPseudoLayer> 8 </MaxInitialPseudoLayer> <!-- default: 3 -->
 		  <InitialHitSearchRange> 65. </InitialHitSearchRange>
@@ -247,56 +247,9 @@
           <MaxConnectionPseudoLayer> 4 </MaxConnectionPseudoLayer>
 		  <MaxTransverseDistanceFine> 7.5 </MaxTransverseDistanceFine> <!-- 1.5 * 5 mm -->
 		  <MaxTransverseDistanceCoarse> 15. </MaxTransverseDistanceCoarse> <!-- 1.5 * 10 mm -->
+		  <MaxDistanceToTrackFine> 10. </MaxDistanceToTrackFine>
+		  <MaxDistanceToTrackCoarse> 20. </MaxDistanceToTrackCoarse>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-        </tool>
-        <tool type="ConnectorCleaning">
-		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
-		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
-		  <BackwardConnectorWeight> 2. </BackwardConnectorWeight>
-		  <ForwardConnectorWeight> 1. </ForwardConnectorWeight>
-		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
-		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
-		</tool>
-
-<comment>
-	    <!-- Step 2: connector seeding in ECAL -->
-        <tool type="ConnectorSeeding">
-		  <MaxPseudoLayerConnection> 8 </MaxPseudoLayerConnection>
-		  <CaloHitCollection> 1 </CaloHitCollection>
-		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
-		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
-		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
-        </tool>
-        <tool type="ConnectorCleaning">
-		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
-		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
-		</tool>
-
-	    <!-- Step 3: connection from ECAL to HCAL -->
-        <tool type="ConnectorPlus">
-		  <MaxBackLayer> 5 </MaxBackLayer>
-		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
-		  <MaxConnectionAngleFine> 0.6 </MaxConnectionAngleFine>
-		  <MaxConnectionAngleCoarse> 1.2 </MaxConnectionAngleCoarse>
-        </tool>
-        <tool type="ConnectorCleaning">
-		  <OrderParameterAnglePower> 1. </OrderParameterAnglePower>
-		  <OrderParameterDistancePower> 5. </OrderParameterDistancePower>
-		</tool>
-
-	    <!-- Step 4: connector seeding in HCAL -->
-        <tool type="ConnectorSeeding">
-		  <CaloHitCollection> 2 </CaloHitCollection>
-		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
-          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
-		  <MaxPseudoLayerConnection> 2 </MaxPseudoLayerConnection>
-		  <MaxCollectorLength> 60. </MaxCollectorLength>
-		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine>
-		  <MaxTransverseDistanceCoarse> 40. </MaxTransverseDistanceCoarse> <!-- 4 * 10 mm -->
-		  <MaxConnectionAngleFine> 0.5 </MaxConnectionAngleFine>
-		  <MaxConnectionAngleCoarse> 1.0 </MaxConnectionAngleCoarse>
         </tool>
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
@@ -306,17 +259,60 @@
 		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
 		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
 		</tool>
-</comment>
+
+	    <!-- connector seeding in ECAL -->
+        <tool type="ConnectorSeeding">
+		  <CaloHitCollection> 1 </CaloHitCollection>
+		  <HitSearchRange> 30. </HitSearchRange>
+		  <MaxPseudoLayerConnection> 2 </MaxPseudoLayerConnection>
+		  <MaxCollectorLength> 20. </MaxCollectorLength>
+		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine>
+		  <MaxTransverseDistanceCoarse> 40. </MaxTransverseDistanceCoarse> <!-- 4 * 10 mm -->
+		  <MaxConnectionAngleFine> 0.5 </MaxConnectionAngleFine>
+		  <MaxConnectionAngleCoarse> 1.0 </MaxConnectionAngleCoarse>
+		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
+          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
+        </tool>
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 7 </OrderParameterDistancePower>
+		  <BackwardConnectorWeight> 2. </BackwardConnectorWeight>
+		  <ForwardConnectorWeight> 1. </ForwardConnectorWeight>
+		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
+		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
+		</tool>
+
+	    <!-- connector seeding in HCAL -->
+        <tool type="ConnectorSeeding">
+		  <CaloHitCollection> 2 </CaloHitCollection>
+		  <HitSearchRange> 60. </HitSearchRange>
+		  <MaxPseudoLayerConnection> 2 </MaxPseudoLayerConnection>
+		  <MaxCollectorLength> 40. </MaxCollectorLength>
+		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine>
+		  <MaxTransverseDistanceCoarse> 40. </MaxTransverseDistanceCoarse> <!-- 4 * 10 mm -->
+		  <MaxConnectionAngleFine> 0.5 </MaxConnectionAngleFine>
+		  <MaxConnectionAngleCoarse> 1.0 </MaxConnectionAngleCoarse>
+		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
+          <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
+        </tool>
+        <tool type="ConnectorCleaning">
+		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
+		  <OrderParameterDistancePower> 7 </OrderParameterDistancePower>
+		  <BackwardConnectorWeight> 2. </BackwardConnectorWeight>
+		  <ForwardConnectorWeight> 1. </ForwardConnectorWeight>
+		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
+		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
+		</tool>
 
 <comment>
-	    <!-- Step 5: nearby hits connecting -->
+	    <!-- nearby hits connecting -->
         <tool type="NearbyHitsConnecting"/> <!-- default MetricType 1: 4D (x, y, z, layer) -->
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
 		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
 		</tool>
 
-	    <!-- Step 6: nearby hits connecting -->
+	    <!-- nearby hits connecting -->
         <tool type="NearbyHitsConnecting">
 			<MetricType> 0 </MetricType>   <!-- 3D metric -->
 		    <EpsDBSCAN> 60. </EpsDBSCAN>

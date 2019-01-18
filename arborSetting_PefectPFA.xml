@@ -773,7 +773,7 @@
 		<DisplayEvent>true</DisplayEvent>
 		<ShowDetector>true</ShowDetector>
 		<DetectorView>""</DetectorView>
-		<ShowOnlyAvailable>true</ShowOnlyAvailable>
+		<ShowOnlyAvailable>false</ShowOnlyAvailable>
 		<ShowAssociatedTracks>true</ShowAssociatedTracks>
 	</algorithm>
 </pandora>
