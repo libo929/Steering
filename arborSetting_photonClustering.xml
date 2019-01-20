@@ -304,26 +304,15 @@
 		  <BackwardReferenceDirectionDepth> 1 </BackwardReferenceDirectionDepth>
 		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
 		</tool>
-
-<comment>
-	    <!-- nearby hits connecting -->
-        <tool type="NearbyHitsConnecting"/> <!-- default MetricType 1: 4D (x, y, z, layer) -->
-        <tool type="ConnectorCleaning">
-		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
-		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
-		</tool>
+		  
 
 	    <!-- nearby hits connecting -->
         <tool type="NearbyHitsConnecting">
 			<MetricType> 0 </MetricType>   <!-- 3D metric -->
-		    <EpsDBSCAN> 60. </EpsDBSCAN>
+		    <EpsDBSCAN> 100. </EpsDBSCAN>
 			<MinPointDBSCAN> 4 </MinPointDBSCAN>
+			<ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
 		</tool>
-        <tool type="ConnectorCleaning">
-		  <OrderParameterAnglePower> 3. </OrderParameterAnglePower>
-		  <OrderParameterDistancePower> 1. </OrderParameterDistancePower>
-		</tool>
-</comment>
 
 	  </ConnectionTools>
     </algorithm>
@@ -337,9 +326,18 @@
 
   </algorithm>
 
+<comment>
   <algorithm type="ClusterPurity">
-    <ListType> 0 </ListType>
+    <ListType> 0 </ListType> <!-- cluster, not pfo cluster -->
     <ListNames>PhotonClusters NonPhotonClusters</ListNames>
+  </algorithm>
+</comment>
+
+  <!-- testing -->
+
+  <algorithm type="ClusterPreparation">
+    <CandidateListNames>PhotonClusters NonPhotonClusters</CandidateListNames>
+	<MergedCandidateListName>PfoCreation</MergedCandidateListName>
   </algorithm>
 
   <algorithm type="VisualMonitoring">
@@ -348,16 +346,41 @@
   	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
   	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
   	<ShowCurrentTracks>true</ShowCurrentTracks>
-  	<ShowCurrentClusters>false</ShowCurrentClusters>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
   	<ShowCurrentPfos>false</ShowCurrentPfos>
   	<ShowCurrentVertices>false</ShowCurrentVertices>
-  	<ClusterListNames>PhotonClusters NonPhotonClusters</ClusterListNames>
   	<HitColors>iterate</HitColors>
   	<DisplayEvent>true</DisplayEvent>
   	<ShowDetector>true</ShowDetector>
   	<DetectorView>""</DetectorView>
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
+
+  <!--algorithm type="CheatingClusterCleaning"/-->
+  <algorithm type="CheatingHitRecovery"/>
+  <algorithm type="CheatingTrackToClusterMatching"/>
+  <algorithm type="PerfectPfoCreation">
+    <OutputPfoListName>PerfectPfos</OutputPfoListName>
+    <CollapsedMCParticlesToPfoTarget>false</CollapsedMCParticlesToPfoTarget>
+  </algorithm>
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>true</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<!--ClusterListNames>PhotonClusters NonPhotonClusters</ClusterListNames-->
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
 
 <comment>
