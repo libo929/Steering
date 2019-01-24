@@ -305,11 +305,10 @@
 		  <ForwardReferenceDirectionDepth> 1 </ForwardReferenceDirectionDepth>
 		</tool>
 		  
-
 	    <!-- nearby hits connecting -->
         <tool type="NearbyHitsConnecting">
 			<MetricType> 0 </MetricType>   <!-- 3D metric -->
-		    <EpsDBSCAN> 100. </EpsDBSCAN>
+		    <EpsDBSCAN> 40. </EpsDBSCAN>
 			<MinPointDBSCAN> 4 </MinPointDBSCAN>
 			<ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
 		</tool>
@@ -317,7 +316,7 @@
 	  </ConnectionTools>
     </algorithm>
 
-	    <!-- Step x: MUON; check endcap, ring... -->
+	<!-- Step x: MUON; check endcap, ring... -->
     <!-- End of clustering in calorimeters -->
 
     <PhotonClusterListName>PhotonClusters</PhotonClusterListName>
@@ -337,7 +336,7 @@
 
   <algorithm type="ClusterPreparation">
     <CandidateListNames>PhotonClusters NonPhotonClusters</CandidateListNames>
-	<MergedCandidateListName>PfoCreation</MergedCandidateListName>
+	<MergedCandidateListName>MergedClustersForPFOCreation</MergedCandidateListName>
   </algorithm>
 
   <algorithm type="VisualMonitoring">
@@ -358,11 +357,37 @@
   </algorithm>
 
   <!--algorithm type="CheatingClusterCleaning"/-->
-  <algorithm type="CheatingHitRecovery"/>
+  <algorithm type="CheatingHitRecovery">
+    <ShouldUseMCRecovery> false </ShouldUseMCRecovery>
+    <ShouldUseRecovery> true </ShouldUseRecovery>
+	<ShouldUseMCMerge> true </ShouldUseMCMerge>
+	<ClusterListToTakeNewClusters>MergedClustersForPFOCreation</ClusterListToTakeNewClusters>
+  </algorithm>
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
   <algorithm type="CheatingTrackToClusterMatching"/>
   <algorithm type="PerfectPfoCreation">
     <OutputPfoListName>PerfectPfos</OutputPfoListName>
     <CollapsedMCParticlesToPfoTarget>false</CollapsedMCParticlesToPfoTarget>
+  </algorithm>
+
+  <algorithm type="ClusterPurity">
+    <ListType> 1 </ListType> <!-- cluster, not pfo cluster -->
+	<ListNames> PerfectPfos </ListNames>
   </algorithm>
 
   <algorithm type="VisualMonitoring">
