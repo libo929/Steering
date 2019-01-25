@@ -22,4 +22,4 @@ rm -f rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds*
 nap 1
 
 ./fileCombine.sh
-./plotAll2
+./plotJER
