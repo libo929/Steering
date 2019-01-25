@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source /media/libo/HD1/workplace/ArborPFA/test/ArborPFASetup.sh
+source ArborPFASetup.sh
 
 #Marlin ILDConfig/StandardConfig/production/SteeringFile_ILD_l5_o2_v02/MarlinStdReco_ILD_l5_o2_v02_SD_PFA.xml \
 
