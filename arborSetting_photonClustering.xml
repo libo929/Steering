@@ -233,6 +233,7 @@
     <ShouldUseMCRecovery> false </ShouldUseMCRecovery>
     <ShouldUseRecovery> true </ShouldUseRecovery>
 	<ShouldUseMCMerge> true </ShouldUseMCMerge>
+	<NeighborHitsNumber> 20 </NeighborHitsNumber>
 	<ClusterListToTakeNewClusters>MergedClustersForPFOCreation</ClusterListToTakeNewClusters>
   </algorithm>
   <algorithm type="VisualMonitoring">
