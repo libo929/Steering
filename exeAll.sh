@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 nap()
 {
     maxMarlinProc=$1

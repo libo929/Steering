@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 if [ -z ${MARLIN_DLL} ]; then
    source /media/libo/HD1/workplace/ArborPFA/test/init_ilcsoft.sh
 fi
