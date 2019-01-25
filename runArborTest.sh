@@ -74,8 +74,10 @@ setSteeringFile()
 
 	fileOrigin="arborSetting_photonClustering.xml"
 
-	if [ ${fileType} = "perfect" ]; then
-		fileOrigin="arborSetting_PefectPFA.xml"
+	if [ ${#fileType} != 0 ]; then
+		if [ ${fileType} = "perfect" ]; then
+			fileOrigin="arborSetting_PefectPFA.xml"
+		fi
 	fi
 
 	cp ${fileDir}/${fileOrigin} ${fileDir}/${fileTarget}
@@ -92,24 +94,33 @@ setEvetDisplayInSteeringFile()
 
 #----------------------------------------------
 # run: ./runArborTest.sh [setup=0] [mcMode=0]
-#---------------------------------------------
-
-setup=$1    # run mode setup
-mcMode=$2   # PFA or MC truth PFA
-
+#----------------------------------------------
+setup=$1    # run mode setup 
+	        # 0: multi job mode
+	        # 1: single job mode
+mcMode=$2   # 0: PFA mode 
+            # 1: MC truth PFA
+#----------------------------------------------
 if [ ${#setup} = 0 ]; then
    setup=0
-   #echo "setup 0"
 else
    if [ ${setup} = "1" ]; then
       setup=1
-      #echo "setup 1"
    else
       setup=0
-      #echo "setup 0"
    fi
 fi
 
+if [ ${#mcMode} = 0 ]; then
+   mcMode=0 
+else
+   if [ ${mcMode} = "1" ]; then
+      mcMode=1
+   else
+      mcMode=0
+   fi
+fi
+#----------------------------------------------
 if [ ${setup} = 0 ]; then
    Energy=(91)
    FileIndex=(0 1 2 3 4)
@@ -128,19 +139,19 @@ nEnergy=${#Energy[@]}
 nFiles=${#FileIndex[@]}
 
 multiJob=1
-if [ ${nEnergy} -eq 1 -a ${nFiles} -eq 1 ]; then
+if [ ${nEnergy} = 1 -a ${nFiles} = 1 ]; then
    multiJob=0
 fi
 
 #echo "multiJob="${multiJob}
 
-if [ ${mcMode} = "1" ]; then
+if [ ${mcMode} = 1 ]; then
    setSteeringFile perfect
 else
    setSteeringFile
 fi
 
-if [ ${multiJob} -eq 0 ]; then
+if [ ${multiJob} = 0 ]; then
    setEvetDisplayInSteeringFile true
    runCmd=run
 else
@@ -148,9 +159,9 @@ else
    runCmd=runBatch
 fi
 
-echo "run mode : "${runCmd}
+echo "multi job mode: "${multiJob}", mc mode: "${mcMode}
 
-#######################################################################
+######################################################################
 for en in ${Energy[@]}; do
     for index in ${FileIndex[@]}; do
          for skip in ${StartingEvent[@]}; do
@@ -159,4 +170,4 @@ for en in ${Energy[@]}; do
 		 done
      done
 done
-#######################################################################
+######################################################################
