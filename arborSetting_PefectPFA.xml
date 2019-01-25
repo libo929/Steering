@@ -752,11 +752,12 @@
         <OutputClusterListName>PerfectPfoClusters</OutputClusterListName>
 	</algorithm>
 
-
+<comment>
     <algorithm type="ClusterPurity">
       <ListType> 1 </ListType>
       <ListNames>PerfectPfos</ListNames>
     </algorithm>
+</comment>
 
 
 	<algorithm type="VisualMonitoring">
