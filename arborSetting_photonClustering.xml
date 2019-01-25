@@ -229,13 +229,38 @@
   </algorithm>
 
   <!--algorithm type="CheatingClusterCleaning"/-->
+
   <algorithm type="CheatingHitRecovery">
-    <ShouldUseMCRecovery> false </ShouldUseMCRecovery>
-    <ShouldUseRecovery> true </ShouldUseRecovery>
-	<ShouldUseMCMerge> true </ShouldUseMCMerge>
-	<NeighborHitsNumber> 20 </NeighborHitsNumber>
+    <ShouldUseMCRecovery> true </ShouldUseMCRecovery>
+	<ShouldUseMCMerge> false </ShouldUseMCMerge>
 	<ClusterListToTakeNewClusters>MergedClustersForPFOCreation</ClusterListToTakeNewClusters>
   </algorithm>
+
+<comment>
+  <algorithm type="NearbyHitRecovery">
+	<NeighborHitsNumber> 20 </NeighborHitsNumber>
+  </algorithm>
+</comment>
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
+
+  <algorithm type="CheatingClusterMergingNew"/>
+
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>
@@ -258,10 +283,12 @@
     <CollapsedMCParticlesToPfoTarget>false</CollapsedMCParticlesToPfoTarget>
   </algorithm>
 
+<comment>
   <algorithm type="ClusterPurity">
     <ListType> 1 </ListType> <!-- cluster, not pfo cluster -->
 	<ListNames> PerfectPfos </ListNames>
   </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
