@@ -2,8 +2,6 @@
 
 source ArborPFASetup.sh
 
-#Marlin ILDConfig/StandardConfig/production/SteeringFile_ILD_l5_o2_v02/MarlinStdReco_ILD_l5_o2_v02_SD_PFA.xml \
-
 run()
 {
    energy=$1
@@ -92,14 +90,16 @@ setEvetDisplayInSteeringFile()
     sed -i "s/<IsMonitoringEnabled>.*<\/IsMonitoringEnabled>/<IsMonitoringEnabled>${displayEvent}<\/IsMonitoringEnabled>/g" ${steeringFile}
 }
 
-#----------------------------------------------
-# run: ./runArborTest.sh [setup=0] [mcMode=0]
-#----------------------------------------------
+#----------------------------------------------------------
+# run: ./runArborTest.sh [setup=0] [mcMode=0] [numFiles=5]
+#----------------------------------------------------------
 setup=$1    # run mode setup 
 	        # 0: multi job mode
 	        # 1: single job mode
 mcMode=$2   # 0: PFA mode 
             # 1: MC truth PFA
+
+numFiles=$3 # number of files of each energy
 #----------------------------------------------
 if [ ${#setup} = 0 ]; then
    setup=0
@@ -120,17 +120,27 @@ else
       mcMode=0
    fi
 fi
+
+if [ ${#numFiles} = 0 ]; then
+   nFiles=5
+else
+   if [ ${numFiles} -gt 0 -a ${numFiles} -le 10 ]; then
+      nFiles=${numFiles}
+   fi
+fi
 #----------------------------------------------
 if [ ${setup} = 0 ]; then
    Energy=(91)
-   FileIndex=(0 1 2 3 4)
-   #FileIndex=(0 1 2 3 4 5 6 7 8 9)
    StartingEvent=(0 200 400 600 800)
    maxRecordNumber=200
+
+   for (( iFile=0; ${iFile}<${nFiles}; iFile=${iFile}+1 )); do
+	   FileIndex+=(${iFile})
+   done
 else
    Energy=(91)
    FileIndex=(0)           
-   StartingEvent=0
+   StartingEvent=2
    maxRecordNumber=1
 fi
 ########################################
@@ -139,7 +149,7 @@ nEnergy=${#Energy[@]}
 nFiles=${#FileIndex[@]}
 
 multiJob=1
-if [ ${nEnergy} = 1 -a ${nFiles} = 1 ]; then
+if [ ${nEnergy} = 1 -a ${nFiles} = 1 -a ${maxRecordNumber} = 1 ]; then
    multiJob=0
 fi
 

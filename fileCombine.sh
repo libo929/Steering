@@ -1,17 +1,25 @@
 #!/usr/bin/env bash
 
-#source /cvmfs/ilc.desy.de/sw/x86_64_gcc49_sl6/v01-19-05/init_ilcsoft.sh
+source ArborPFASetup.sh
 
-####################
+#------------------------------------------------------------------------
+numFiles=$1 # number of files of each energy
 
-#for energy in 120 160 200 240 30 300 350 40 400 500 60 91; do
-#for energy in 200 350 500 ; do
+if [ ${#numFiles} = 0 ]; then
+   nFiles=5
+else
+   if [ ${numFiles} -gt 0 -a ${numFiles} -le 10 ]; then
+      nFiles=${numFiles}
+   fi
+fi
 
+for (( iFile=0; ${iFile}<${nFiles}; iFile=${iFile}+1 )); do
+	FileIndex+=(${iFile})
+done
+#---------------------------------
 Energy=(91)
-FileIndex=(0 1 2 3 4)
-#FileIndex=(0 1 2 3 4 5 6 7 8 9)
-
 StartingEvent=(0 200 400 600 800)
+#------------------------------------------------------------------------
 
 for energy in ${Energy[@]}; do
     fileListANA=""
@@ -35,7 +43,7 @@ for energy in ${Energy[@]}; do
     hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}.root" ${fileListANA}
 
     #echo ${fileListAIDA}
-    #hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}_AIDA.root" ${fileListAIDA}
+    hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}_AIDA.root" ${fileListAIDA}
 done 
 
 ####################
