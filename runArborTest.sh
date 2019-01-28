@@ -100,7 +100,9 @@ mcMode=$2   # 0: PFA mode
             # 1: MC truth PFA
 
 numFiles=$3 # number of files of each energy
-#----------------------------------------------
+            # if it's in single job mode, this is the
+            # event number to run
+#---------------------------------------------------------
 if [ ${#setup} = 0 ]; then
    setup=0
 else
@@ -140,7 +142,13 @@ if [ ${setup} = 0 ]; then
 else
    Energy=(91)
    FileIndex=(0)           
-   StartingEvent=2
+
+   if [[ ${numFiles} =~ ^[0-9]+$ ]]; then
+      StartingEvent=${numFiles}
+   else
+      StartingEvent=0
+   fi
+
    maxRecordNumber=1
 fi
 ########################################

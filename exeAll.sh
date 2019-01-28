@@ -17,12 +17,15 @@ rm -f rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds*
 
 numFiles=$1   # input file number
 
-if [ ${numFiles} -gt 0 -a ${numFiles} -le 10 ]; then
-   nInputFiles=${numFiles}
-   echo "File number:" ${nInputFiles}
-else
-   nInputFiles=5
+nInputFiles=10
+
+if [ ${#numFiles} != 0 ]; then
+   if [ ${numFiles} -gt 0 -a ${numFiles} -le 10 ]; then
+      nInputFiles=${numFiles}
+   fi
 fi
+
+echo "File number:" ${nInputFiles}
 
 # runArborTest.sh 1 1                # single job mode, with mc truth PFA
 ./runArborTest.sh 0 0 ${nInputFiles} # muti job mode, PFA, file number
