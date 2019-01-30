@@ -177,14 +177,35 @@
     <PhotonClusterListName>PhotonClusters</PhotonClusterListName>
     <NonPhotonClusterListName>NonPhotonClusters</NonPhotonClusterListName>
     <ReplaceCurrentClusterList>false</ReplaceCurrentClusterList>
-
   </algorithm>
-
-  <!-- testing -->
 
   <algorithm type="ClusterPreparation">
     <CandidateListNames>PhotonClusters NonPhotonClusters</CandidateListNames>
 	<MergedCandidateListName>MergedClustersForPFOCreation</MergedCandidateListName>
+  </algorithm>
+
+  <!-- testing -->
+<comment>
+  <algorithm type="PerfectClusteringNew">
+     <OutputClusterListName>PerfectPfoClusters</OutputClusterListName>
+  </algorithm>
+</comment>
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
   <!--algorithm type="CheatingClusterCleaning"/-->
@@ -199,7 +220,6 @@
 		<ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
 	</tool>
   </algorithm>
-
   <algorithm type="NearbyHitRecovery">
 	<NeighborHitsNumber> 40 </NeighborHitsNumber>
 	<MaxHitsDistance> 2000. </MaxHitsDistance>
@@ -211,24 +231,8 @@
 	</tool>
   </algorithm>
 
-  <algorithm type="VisualMonitoring">
-  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
-  	<ConnectorLevel>Clusters</ConnectorLevel>
-  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
-  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-  	<ShowCurrentTracks>true</ShowCurrentTracks>
-  	<ShowCurrentClusters>true</ShowCurrentClusters>
-  	<ShowCurrentPfos>false</ShowCurrentPfos>
-  	<ShowCurrentVertices>false</ShowCurrentVertices>
-  	<HitColors>iterate</HitColors>
-  	<DisplayEvent>true</DisplayEvent>
-  	<ShowDetector>true</ShowDetector>
-  	<DetectorView>""</DetectorView>
-  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
-  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
-  </algorithm>
-
 <comment>
+  <algorithm type="CheatingClusterCleaning"/>
   <algorithm type="CheatingHitRecovery">
     <ShouldUseMCRecovery> true </ShouldUseMCRecovery>
 	<ShouldUseMCMerge> false </ShouldUseMCMerge>
@@ -236,9 +240,6 @@
   </algorithm>
 </comment>
 
-
-  <algorithm type="CheatingClusterMergingNew"/>
-
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>
@@ -253,8 +254,10 @@
   	<ShowDetector>true</ShowDetector>
   	<DetectorView>""</DetectorView>
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
-  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
+
+  <algorithm type="CheatingClusterMergingNew"/>
 
   <algorithm type="CheatingTrackToClusterMatching"/>
 
@@ -263,10 +266,12 @@
     <CollapsedMCParticlesToPfoTarget>false</CollapsedMCParticlesToPfoTarget>
   </algorithm>
 
+<comment>
   <algorithm type="ClusterPurity">
     <ListType> 1 </ListType> <!-- cluster, not pfo cluster -->
 	<ListNames> PerfectPfos </ListNames>
   </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
