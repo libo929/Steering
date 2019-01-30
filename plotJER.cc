@@ -154,7 +154,9 @@ int main()
 
            float jetEnergyReso = jetrms90 / cms[i] * sqrt(2) * 100.;
 
-		   std::cout << "JER: " << jetEnergyReso << std::endl;
+		   std::cout << " \033[1;31m============================= " << std::endl
+		             << " === JER: " << jetEnergyReso << std::endl
+					 << " =============================\033[0m" << std::endl;
 
 		   const int EVENTNUM = 6000;
 		   float ResoError = jetEnergyReso / sqrt(2. * EVENTNUM);
@@ -338,7 +340,7 @@ double GetRMS(std::vector<std::string>& files)
 
 	double minrms90 = RMSFitPercentageRange(hist);
 
-	std::cout << "=====> RMS90: " << minrms90 << std::endl;
+	std::cout << "--- RMS90: " << minrms90 << std::endl;
 
 	delete ch1;
 	delete hist;
