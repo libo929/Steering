@@ -126,6 +126,7 @@
 		  <MaxConnectionAngleCoarse> 1.0 </MaxConnectionAngleCoarse>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
+		  <ConnectorCreationStage> 2 </ConnectorCreationStage>
         </tool>
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
@@ -148,6 +149,7 @@
 		  <MaxConnectionAngleCoarse> 1.0 </MaxConnectionAngleCoarse>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
+		  <ConnectorCreationStage> 3 </ConnectorCreationStage>
         </tool>
         <tool type="ConnectorCleaning">
 		  <OrderParameterAnglePower> 1 </OrderParameterAnglePower>
@@ -286,10 +288,13 @@
   </algorithm>
 
   <algorithm type="MatchTrackWithStartingCluster"/>
+
+<comment>
   <algorithm type="ClusterFromTrackMerging"/>
-  <!--algorithm type="PointingClusterAssociationNew"/-->
-  <!--algorithm type="CleanClusterForMerging"/-->
   <algorithm type="ClustersMerging"/>
+
+  <!--algorithm type="PointingClusterAssociationNew"/-->
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
