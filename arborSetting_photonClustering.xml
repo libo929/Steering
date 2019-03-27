@@ -142,10 +142,10 @@
 		  <CaloHitCollection> 2 </CaloHitCollection>
 		  <HitSearchRange> 60. </HitSearchRange>
 		  <MaxPseudoLayerConnection> 2 </MaxPseudoLayerConnection>
-		  <MaxCollectorLength> 40. </MaxCollectorLength>
-		  <MaxTransverseDistanceFine> 15. </MaxTransverseDistanceFine>
+		  <MaxCollectorLength> 70. </MaxCollectorLength>
+		  <MaxTransverseDistanceFine> 20. </MaxTransverseDistanceFine>
 		  <MaxTransverseDistanceCoarse> 40. </MaxTransverseDistanceCoarse> <!-- 4 * 10 mm -->
-		  <MaxConnectionAngleFine> 0.5 </MaxConnectionAngleFine>
+		  <MaxConnectionAngleFine> 0.8 </MaxConnectionAngleFine>
 		  <MaxConnectionAngleCoarse> 1.0 </MaxConnectionAngleCoarse>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
           <ShouldDiscriminateConnectedHits> false </ShouldDiscriminateConnectedHits>
@@ -288,13 +288,11 @@
   </algorithm>
 
   <algorithm type="MatchTrackWithStartingCluster"/>
-
-<comment>
   <algorithm type="ClusterFromTrackMerging"/>
   <algorithm type="ClustersMerging"/>
 
   <!--algorithm type="PointingClusterAssociationNew"/-->
-</comment>
+  <!--algorithm type="ClusterFromTrackMerging2"/-->
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
