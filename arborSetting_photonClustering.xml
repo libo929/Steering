@@ -93,15 +93,15 @@
 	    <!-- track driven seeding in ECAL + HCAL -->
         <tool type="TrackDrivenSeeding">
 		  <MaxInitialPseudoLayer> 8 </MaxInitialPseudoLayer> <!-- default: 3 -->
-		  <InitialHitSearchRange> 65. </InitialHitSearchRange>
-		  <HitSearchRangeFine> 30. </HitSearchRangeFine>
-		  <HitSearchRangeCoarse> 60. </HitSearchRangeCoarse>
+		  <InitialHitSearchRange> 100. </InitialHitSearchRange>
+		  <HitSearchRangeFine> 80. </HitSearchRangeFine>
+		  <HitSearchRangeCoarse> 100. </HitSearchRangeCoarse>
 		  <HitSearchRangeAtBoundary> 160. </HitSearchRangeAtBoundary>
-          <MaxConnectionPseudoLayer> 4 </MaxConnectionPseudoLayer>
+          <MaxConnectionPseudoLayer> 6 </MaxConnectionPseudoLayer>
 		  <MaxTransverseDistanceFine> 7.5 </MaxTransverseDistanceFine> <!-- 1.5 * 5 mm -->
 		  <MaxTransverseDistanceCoarse> 15. </MaxTransverseDistanceCoarse> <!-- 1.5 * 10 mm -->
-		  <MaxDistanceToTrackFine> 10. </MaxDistanceToTrackFine>
-		  <MaxDistanceToTrackCoarse> 20. </MaxDistanceToTrackCoarse>
+		  <MaxDistanceToTrackFine> 15. </MaxDistanceToTrackFine>
+		  <MaxDistanceToTrackCoarse> 30. </MaxDistanceToTrackCoarse>
 		  <ShouldUseIsolatedHits> true </ShouldUseIsolatedHits>
 		  <ConnectorCreationStage> 1 </ConnectorCreationStage>
         </tool>
