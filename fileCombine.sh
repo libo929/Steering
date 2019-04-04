@@ -41,9 +41,10 @@ for energy in ${Energy[@]}; do
 
     #echo ${fileListANA}
     hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}.root" ${fileListANA}
+    cp rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}.root 91_test.root
 
     #echo ${fileListAIDA}
-    #hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}_AIDA.root" ${fileListAIDA}
+    hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}_AIDA.root" ${fileListAIDA}
 done 
 
 ####################

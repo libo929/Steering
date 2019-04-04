@@ -234,6 +234,8 @@
   <algorithm type="ClusterFromTrackMerging2"/>
   <algorithm type="ClustersMerging"/>
 
+  <algorithm type="CheatingClusterMergingNew"/>
+
   <algorithm type = "TrackPreparation">
       <CandidateListNames>Input</CandidateListNames>
       <MergedCandidateListName>PfoCandidates</MergedCandidateListName>
@@ -247,7 +249,7 @@
       </trackClusterAssociationAlgorithms>
   </algorithm>
 
-  <algorithm type = "MainFragmentRemoval"/>
+  <!--algorithm type = "MainFragmentRemoval"/-->
 
   <algorithm type="ForceSplitTrackAssociations"/>
   <algorithm type="PfoCreation">                                                                                       
