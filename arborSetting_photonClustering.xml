@@ -291,8 +291,31 @@
   <algorithm type="ClusterFromTrackMerging"/>
   <algorithm type="ClustersMerging"/>
 
-  <!--algorithm type="PointingClusterAssociationNew"/-->
-  <!--algorithm type="ClusterFromTrackMerging2"/-->
+  <algorithm type="ClusterFromTrackMerging">
+    <MaxStartingClusterDistance> 3000 </MaxStartingClusterDistance>
+	<MaxClusterTrackAngle> 0.3 </MaxClusterTrackAngle>
+  </algorithm>
+  <algorithm type="ClustersMerging"/>
+
+  <algorithm type="ClusterFromTrackMerging2"/>
+  <algorithm type="ClustersMerging"/>
+
+  <algorithm type="ClusterFromTrackMerging2"/>
+  <algorithm type="ClustersMerging"/>
+
+<comment>
+  <algorithm type="ClusterFromTrackMerging3"/>
+  <algorithm type="ClustersMerging">
+    <MaxChi> 1. </MaxChi>
+	<MaxMergingEnergy> 2. </MaxMergingEnergy>
+  </algorithm>
+
+  <algorithm type="ClusterFromTrackMerging3"/>
+  <algorithm type="ClustersMerging">
+    <MaxChi> 6 </MaxChi>
+	<MaxMergingEnergy> 50. </MaxMergingEnergy>
+  </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -313,6 +336,7 @@
 
   <!--algorithm type="CheatingClusterMergingNew"/-->
 
+<comment>
   <algorithm type="CheatingTrackToClusterMatching">
     <ShouldMergeTrackClusters> true </ShouldMergeTrackClusters>
   </algorithm>
@@ -333,10 +357,55 @@
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
+  <algorithm type="CheatingTrackToClusterMatching">
+    <ShouldMergeTrackClusters> true </ShouldMergeTrackClusters>
+  </algorithm>
+</comment>
 
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>true</ShowAssociatedTracks>
+  </algorithm>
+
+  <!--algorithm type="CheatingClusterMergingNew"/-->
+
+<comment>
   <algorithm type="PerfectPfoCreation">
     <OutputPfoListName>PerfectPfos</OutputPfoListName>
     <CollapsedMCParticlesToPfoTarget>false</CollapsedMCParticlesToPfoTarget>
+  </algorithm>
+</comment>
+
+  <algorithm type = "TrackPreparation">
+      <CandidateListNames>Input</CandidateListNames>
+      <MergedCandidateListName>PfoCandidates</MergedCandidateListName>
+      <PfoTrackListName>PfoCreation</PfoTrackListName>
+      <trackClusterAssociationAlgorithms>
+          <algorithm type = "TrackClusterAssociation"/>
+          <algorithm type = "LoopingTrackAssociation"/>
+          <algorithm type = "TrackRecovery"/>
+          <algorithm type = "TrackRecoveryHelix"/>
+          <algorithm type = "TrackRecoveryInteractions"/>
+      </trackClusterAssociationAlgorithms>
+  </algorithm>
+
+  <algorithm type = "MainFragmentRemoval"/>
+
+  <algorithm type="ForceSplitTrackAssociations"/>
+  <algorithm type="PfoCreation">                                                                                       
+    <OutputPfoListName>ArborPfos</OutputPfoListName>                                                                 
   </algorithm>
 
 <comment>
