@@ -241,9 +241,11 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
+<comment>
   <algorithm type = "CheatingClusterMergingNew">
     <OnlyMergeChargedCluster> true </OnlyMergeChargedCluster>
   </algorithm>
+</comment>
 
   <algorithm type = "TrackPreparation">
       <CandidateListNames>Input</CandidateListNames>
@@ -274,6 +276,8 @@
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
+
+  <algorithm type = "MainFragmentRemoval"/>
 
   <algorithm type="ForceSplitTrackAssociations"/>
   <algorithm type="PfoCreation">                                                                                       

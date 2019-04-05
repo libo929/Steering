@@ -106,7 +106,7 @@ int main()
    int nEnergyPoints = (sizeof(cms)/sizeof(*cms));
    int nSettings = fileDirs.size();
 
-   std::cout << "EnergyPoints: " <<  nEnergyPoints << ", file settings: " << nSettings << std::endl;
+   //std::cout << "EnergyPoints: " <<  nEnergyPoints << ", file settings: " << nSettings << std::endl;
 
    ///////////////////////////////////////////////////////
 
@@ -147,7 +147,7 @@ int main()
            // use combined root file
            std::string fileName("/rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds");
            fileName = fileDir + fileName + std::to_string((int)cms[i]) + ".root";
-           std::cout << fileName << std::endl;
+           //std::cout << fileName << std::endl;
 
            files.push_back(fileName);
            double jetrms90 = GetRMS(files);
@@ -155,7 +155,7 @@ int main()
            float jetEnergyReso = jetrms90 / cms[i] * sqrt(2) * 100.;
 
 		   std::cout << " \033[1;31m============================= " << std::endl
-		             << " === JER: " << jetEnergyReso << std::endl
+		             << " === JER: " << jetEnergyReso << "%" << std::endl
 					 << " =============================\033[0m" << std::endl;
 
 		   const int EVENTNUM = 6000;
@@ -271,7 +271,7 @@ double GetRMS(std::vector<std::string>& files)
 	for(int i=0; i<files.size(); ++i) 
 	{ 
 		std::string& fileName = files.at(i);
-		cout << fileName << endl;
+		//cout << fileName << endl;
 
 		ch1->Add(fileName.c_str());
 	}
@@ -305,10 +305,10 @@ double GetRMS(std::vector<std::string>& files)
 	double mean = fit->GetParameter(1);
 	double sigma = fit->GetParameter(2);
 
-	std::cout << "1) mean: " << mean << ", sigma: " << sigma << std::endl;
+	//std::cout << "1) mean: " << mean << ", sigma: " << sigma << std::endl;
 
 	////////////////
-	std::cout << "--- " << hist->GetEntries() << std::endl;
+	//std::cout << "--- " << hist->GetEntries() << std::endl;
 	hist->Reset();
 
 	/////////////////////
@@ -330,17 +330,17 @@ double GetRMS(std::vector<std::string>& files)
 		}
 	}
 
-	std::cout << "--- " << hist->GetEntries() << std::endl;
+	//std::cout << "--- " << hist->GetEntries() << std::endl;
 	hist->Fit("gaus", "QN");
 
 	mean = fit->GetParameter(1);
 	sigma = fit->GetParameter(2);
 
-	std::cout << "2) mean: " << mean << ", sigma: " << sigma << std::endl;
+	//std::cout << "2) mean: " << mean << ", sigma: " << sigma << std::endl;
 
 	double minrms90 = RMSFitPercentageRange(hist);
 
-	std::cout << "--- RMS90: " << minrms90 << std::endl;
+	//std::cout << "--- RMS90: " << minrms90 << std::endl;
 
 	delete ch1;
 	delete hist;

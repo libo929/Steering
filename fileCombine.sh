@@ -21,6 +21,8 @@ Energy=(91)
 StartingEvent=(0 200 400 600 800)
 #------------------------------------------------------------------------
 
+echo "Merging files..."
+
 for energy in ${Energy[@]}; do
     fileListANA=""
     fileListAIDA=""
@@ -40,11 +42,13 @@ for energy in ${Energy[@]}; do
 	done
 
     #echo ${fileListANA}
-    hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}.root" ${fileListANA}
+    hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}.root" ${fileListANA} > /dev/null 2>&1
     cp rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}.root 91_test.root
 
     #echo ${fileListAIDA}
-    hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}_AIDA.root" ${fileListAIDA}
+    hadd -f "rv01-19-05-p01.sv01-19-05.mILD_l5_o1_v02_nobg.Puds${energy}_AIDA.root" ${fileListAIDA} > /dev/null 2>&1
 done 
+
+echo "Done."
 
 ####################
