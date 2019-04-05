@@ -218,9 +218,12 @@
   <algorithm type="ClusterFromTrackMerging2"/>
   <algorithm type="ClustersMerging"/>
 
-  <algorithm type="ClusterFromTrackMerging3"/>
+  <algorithm type="ClusterFromTrackMerging3">
+    <MaxClosestPhotonDistance> 60. </MaxClosestPhotonDistance>
+  </algorithm>
   <algorithm type="ClustersMerging">
     <UseEnergyChi> false </UseEnergyChi>
+	<MaxMergingEnergy> 3. </MaxMergingEnergy>
   </algorithm>
 
 
