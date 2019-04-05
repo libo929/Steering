@@ -175,22 +175,6 @@
 	<MergedCandidateListName>MergedClustersForPFOCreation</MergedCandidateListName>
   </algorithm>
 
-  <algorithm type="VisualMonitoring">
-  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
-  	<ConnectorLevel>Clusters</ConnectorLevel>
-  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
-  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-  	<ShowCurrentTracks>true</ShowCurrentTracks>
-  	<ShowCurrentClusters>true</ShowCurrentClusters>
-  	<ShowCurrentPfos>false</ShowCurrentPfos>
-  	<ShowCurrentVertices>false</ShowCurrentVertices>
-  	<HitColors>iterate</HitColors>
-  	<DisplayEvent>true</DisplayEvent>
-  	<ShowDetector>true</ShowDetector>
-  	<DetectorView>""</DetectorView>
-  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
-  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
-  </algorithm>
 
   <algorithm type="NearbyHitRecovery">
 	<NeighborHitsNumber> 20 </NeighborHitsNumber>
@@ -234,7 +218,32 @@
   <algorithm type="ClusterFromTrackMerging2"/>
   <algorithm type="ClustersMerging"/>
 
-  <algorithm type="CheatingClusterMergingNew"/>
+  <algorithm type="ClusterFromTrackMerging3"/>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> false </UseEnergyChi>
+  </algorithm>
+
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
+
+  <algorithm type = "CheatingClusterMergingNew">
+    <OnlyMergeChargedCluster> true </OnlyMergeChargedCluster>
+  </algorithm>
 
   <algorithm type = "TrackPreparation">
       <CandidateListNames>Input</CandidateListNames>
@@ -249,7 +258,22 @@
       </trackClusterAssociationAlgorithms>
   </algorithm>
 
-  <!--algorithm type = "MainFragmentRemoval"/-->
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
 
   <algorithm type="ForceSplitTrackAssociations"/>
   <algorithm type="PfoCreation">                                                                                       
