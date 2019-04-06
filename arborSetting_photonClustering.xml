@@ -246,7 +246,6 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
-<comment>
   <algorithm type="ClusterFromTrackMerging3">
     <MergePhotonClusters> false </MergePhotonClusters>
 	<MergeChargedClusters> true </MergeChargedClusters>
@@ -254,9 +253,20 @@
   <algorithm type="ClustersMerging">
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 2. </MaxChi>
-	<MaxMergingEnergy> 1.5 </MaxMergingEnergy>
+	<MaxMergingEnergy> 2. </MaxMergingEnergy>
+	<MergeError> false </MergeError>
   </algorithm>
-</comment>
+
+  <algorithm type="ClusterFromTrackMerging3">
+    <MergePhotonClusters> false </MergePhotonClusters>
+	<MergeChargedClusters> true </MergeChargedClusters>
+  </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 2.5 </MaxChi>
+	<MaxMergingEnergy> 1.5 </MaxMergingEnergy>
+	<MergeError> false </MergeError>
+  </algorithm>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -275,12 +285,10 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
-
   <algorithm type = "CheatingClusterMergingNew">
     <MergeNeutral> true </MergeNeutral>
 	<MergeCharged> true </MergeCharged>
   </algorithm>
-
 
   <algorithm type = "TrackPreparation">
       <CandidateListNames>Input</CandidateListNames>
