@@ -293,7 +293,7 @@
 
   <algorithm type = "CheatingClusterMergingNew">
     <MergeNeutral> true </MergeNeutral>
-	<MergeCharged> true </MergeCharged>
+	<MergeCharged> false </MergeCharged>
   </algorithm>
 
   <algorithm type = "TrackPreparation">
