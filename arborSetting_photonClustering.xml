@@ -219,7 +219,9 @@
   <algorithm type="ClustersMerging"/>
 
   <algorithm type="ClusterFromTrackMerging3">
-    <MaxClosestPhotonDistance> 60. </MaxClosestPhotonDistance>
+    <MergePhotonClusters> true </MergePhotonClusters>
+	<MergeChargedClusters> false </MergeChargedClusters>
+    <MaxClosestPhotonDistance> 80. </MaxClosestPhotonDistance>
   </algorithm>
   <algorithm type="ClustersMerging">
     <UseEnergyChi> false </UseEnergyChi>
@@ -244,22 +246,17 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
-  <algorithm type = "CheatingClusterMergingNew">
-    <OnlyMergeChargedCluster> false </OnlyMergeChargedCluster>
+<comment>
+  <algorithm type="ClusterFromTrackMerging3">
+    <MergePhotonClusters> false </MergePhotonClusters>
+	<MergeChargedClusters> true </MergeChargedClusters>
   </algorithm>
-
-  <algorithm type = "TrackPreparation">
-      <CandidateListNames>Input</CandidateListNames>
-      <MergedCandidateListName>PfoCandidates</MergedCandidateListName>
-      <PfoTrackListName>PfoCreation</PfoTrackListName>
-      <trackClusterAssociationAlgorithms>
-          <algorithm type = "TrackClusterAssociation"/>
-          <algorithm type = "LoopingTrackAssociation"/>
-          <algorithm type = "TrackRecovery"/>
-          <algorithm type = "TrackRecoveryHelix"/>
-          <algorithm type = "TrackRecoveryInteractions"/>
-      </trackClusterAssociationAlgorithms>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 2. </MaxChi>
+	<MaxMergingEnergy> 1.5 </MaxMergingEnergy>
   </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -276,6 +273,26 @@
   	<DetectorView>""</DetectorView>
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
+
+
+  <algorithm type = "CheatingClusterMergingNew">
+    <MergeNeutral> true </MergeNeutral>
+	<MergeCharged> true </MergeCharged>
+  </algorithm>
+
+
+  <algorithm type = "TrackPreparation">
+      <CandidateListNames>Input</CandidateListNames>
+      <MergedCandidateListName>PfoCandidates</MergedCandidateListName>
+      <PfoTrackListName>PfoCreation</PfoTrackListName>
+      <trackClusterAssociationAlgorithms>
+          <algorithm type = "TrackClusterAssociation"/>
+          <algorithm type = "LoopingTrackAssociation"/>
+          <algorithm type = "TrackRecovery"/>
+          <algorithm type = "TrackRecoveryHelix"/>
+          <algorithm type = "TrackRecoveryInteractions"/>
+      </trackClusterAssociationAlgorithms>
   </algorithm>
 
   <!--algorithm type = "MainFragmentRemoval"/-->
