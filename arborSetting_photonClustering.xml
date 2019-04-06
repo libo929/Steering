@@ -218,6 +218,7 @@
   <algorithm type="ClusterFromTrackMerging2"/>
   <algorithm type="ClustersMerging"/>
 
+  <!-- photon fragment merging -->
   <algorithm type="ClusterFromTrackMerging3">
     <MergePhotonClusters> true </MergePhotonClusters>
 	<MergeChargedClusters> false </MergeChargedClusters>
@@ -246,6 +247,8 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
+
+<comment>
   <algorithm type="ClusterFromTrackMerging3">
     <MergePhotonClusters> false </MergePhotonClusters>
 	<MergeChargedClusters> true </MergeChargedClusters>
@@ -254,6 +257,7 @@
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 2. </MaxChi>
 	<MaxMergingEnergy> 2. </MaxMergingEnergy>
+	<MergeIssue> true </MergeIssue>
 	<MergeError> false </MergeError>
   </algorithm>
 
@@ -265,8 +269,10 @@
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 2.5 </MaxChi>
 	<MaxMergingEnergy> 1.5 </MaxMergingEnergy>
+	<MergeIssue> true </MergeIssue>
 	<MergeError> false </MergeError>
   </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -303,7 +309,7 @@
       </trackClusterAssociationAlgorithms>
   </algorithm>
 
-  <!--algorithm type = "MainFragmentRemoval"/-->
+  <algorithm type = "MainFragmentRemoval"/>
 
   <algorithm type="ForceSplitTrackAssociations"/>
   <algorithm type="PfoCreation">                                                                                       
