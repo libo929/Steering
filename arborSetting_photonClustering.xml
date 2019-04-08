@@ -229,41 +229,6 @@
 	<MaxMergingEnergy> 3. </MaxMergingEnergy>
   </algorithm>
 
-
-  <algorithm type="VisualMonitoring">
-  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
-  	<ConnectorLevel>Clusters</ConnectorLevel>
-  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
-  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-  	<ShowCurrentTracks>true</ShowCurrentTracks>
-  	<ShowCurrentClusters>true</ShowCurrentClusters>
-  	<ShowCurrentPfos>false</ShowCurrentPfos>
-  	<ShowCurrentVertices>false</ShowCurrentVertices>
-  	<HitColors>iterate</HitColors>
-  	<DisplayEvent>true</DisplayEvent>
-  	<ShowDetector>true</ShowDetector>
-  	<DetectorView>""</DetectorView>
-  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
-  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
-  </algorithm>
-
-  <algorithm type="VisualMonitoring">
-  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
-  	<ConnectorLevel>Clusters</ConnectorLevel>
-  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
-  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-  	<ShowCurrentTracks>true</ShowCurrentTracks>
-  	<ShowCurrentClusters>true</ShowCurrentClusters>
-  	<ShowCurrentPfos>false</ShowCurrentPfos>
-  	<ShowCurrentVertices>false</ShowCurrentVertices>
-  	<HitColors>iterate</HitColors>
-  	<DisplayEvent>true</DisplayEvent>
-  	<ShowDetector>true</ShowDetector>
-  	<DetectorView>""</DetectorView>
-  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
-  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
-  </algorithm>
-
   <algorithm type = "NearbyFragmentsMerging">
     <MaxClosestFragmentDistance> 80. </MaxClosestFragmentDistance>
   </algorithm>
@@ -272,8 +237,21 @@
 	<MaxMergingEnergy> 2. </MaxMergingEnergy>
   </algorithm>
 
-<comment>
+  <!-- testing from here -->
+
   <algorithm type="ClusterFromTrackMerging3">
+    <MergePhotonClusters> false </MergePhotonClusters>
+	<MergeChargedClusters> true </MergeChargedClusters>
+  </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 2. </MaxChi>
+	<MaxMergingEnergy> 3. </MaxMergingEnergy>
+	<MergeIssue> true </MergeIssue>
+	<MergeError> true </MergeError>
+  </algorithm>
+
+  <algorithm type="ClusterFromTrackMerging4">
     <MergePhotonClusters> false </MergePhotonClusters>
 	<MergeChargedClusters> true </MergeChargedClusters>
   </algorithm>
@@ -284,7 +262,23 @@
 	<MergeIssue> true </MergeIssue>
 	<MergeError> true </MergeError>
   </algorithm>
-</comment>
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
 
 <comment>
   <algorithm type = "CheatingClusterMergingNew">
@@ -294,6 +288,23 @@
 	<MergeNeutralHadron> false </MergeNeutralHadron>
   </algorithm>
 </comment>
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
 
   <algorithm type = "TrackPreparation">
       <CandidateListNames>Input</CandidateListNames>
