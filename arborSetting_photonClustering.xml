@@ -247,33 +247,6 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
-
-<comment>
-  <algorithm type="ClusterFromTrackMerging3">
-    <MergePhotonClusters> false </MergePhotonClusters>
-	<MergeChargedClusters> true </MergeChargedClusters>
-  </algorithm>
-  <algorithm type="ClustersMerging">
-    <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 2. </MaxChi>
-	<MaxMergingEnergy> 2. </MaxMergingEnergy>
-	<MergeIssue> true </MergeIssue>
-	<MergeError> false </MergeError>
-  </algorithm>
-
-  <algorithm type="ClusterFromTrackMerging3">
-    <MergePhotonClusters> false </MergePhotonClusters>
-	<MergeChargedClusters> true </MergeChargedClusters>
-  </algorithm>
-  <algorithm type="ClustersMerging">
-    <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 2.5 </MaxChi>
-	<MaxMergingEnergy> 1.5 </MaxMergingEnergy>
-	<MergeIssue> true </MergeIssue>
-	<MergeError> false </MergeError>
-  </algorithm>
-</comment>
-
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>
@@ -291,10 +264,36 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
-  <algorithm type = "CheatingClusterMergingNew">
-    <MergeNeutral> true </MergeNeutral>
-	<MergeCharged> false </MergeCharged>
+  <algorithm type = "NearbyFragmentsMerging">
+    <MaxClosestFragmentDistance> 80. </MaxClosestFragmentDistance>
   </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> false </UseEnergyChi>
+	<MaxMergingEnergy> 2. </MaxMergingEnergy>
+  </algorithm>
+
+<comment>
+  <algorithm type="ClusterFromTrackMerging3">
+    <MergePhotonClusters> false </MergePhotonClusters>
+	<MergeChargedClusters> true </MergeChargedClusters>
+  </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 2. </MaxChi>
+	<MaxMergingEnergy> 1. </MaxMergingEnergy>
+	<MergeIssue> true </MergeIssue>
+	<MergeError> true </MergeError>
+  </algorithm>
+</comment>
+
+<comment>
+  <algorithm type = "CheatingClusterMergingNew">
+    <MergeNeutral> false </MergeNeutral>
+	<MergeCharged> true </MergeCharged>
+    <MergePhoton> false </MergePhoton>
+	<MergeNeutralHadron> false </MergeNeutralHadron>
+  </algorithm>
+</comment>
 
   <algorithm type = "TrackPreparation">
       <CandidateListNames>Input</CandidateListNames>
