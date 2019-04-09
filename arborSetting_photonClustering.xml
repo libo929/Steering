@@ -239,6 +239,7 @@
 
   <!-- testing from here -->
 
+  <!-- charged fragments merging -->
   <algorithm type="ClusterFromTrackMerging3">
     <MergePhotonClusters> false </MergePhotonClusters>
 	<MergeChargedClusters> true </MergeChargedClusters>
@@ -251,6 +252,7 @@
 	<MergeError> true </MergeError>
   </algorithm>
 
+  <!-- charged fragments merging with larger steering parameters -->
   <algorithm type="ClusterFromTrackMerging4">
     <MergePhotonClusters> false </MergePhotonClusters>
 	<MergeChargedClusters> true </MergeChargedClusters>
