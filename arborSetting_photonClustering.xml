@@ -45,16 +45,16 @@
 	
 	<ArborEmShowerId>
 	 <MaxForwardPseudoLayer>3</MaxForwardPseudoLayer>
-	 <MinPseudoLayerNHits>4</MinPseudoLayerNHits>
+	 <MinPseudoLayerNHits>2</MinPseudoLayerNHits>
 	 <MinFitHitDistanceFine>50</MinFitHitDistanceFine>
 	 <MinFitHitDistanceCoarse>100</MinFitHitDistanceCoarse>
-	 <MinNInteractingLayers>2</MinNInteractingLayers>
+	 <MinNInteractingLayers>3</MinNInteractingLayers>
 	 <LowEnergyClusterCut>4.</LowEnergyClusterCut>
 	 <MaxPseudoLayerExtension>30</MaxPseudoLayerExtension>
-	 <MaxAngleWithOrigin>0.3</MaxAngleWithOrigin>
-	 <MaxHadronicEnergyFraction>0.2</MaxHadronicEnergyFraction>
+	 <MaxAngleWithOrigin>0.7</MaxAngleWithOrigin>
+	 <MaxHadronicEnergyFraction>0.02</MaxHadronicEnergyFraction>
 	 <MinOuterEcalPseudoLayerEnergyCut>25</MinOuterEcalPseudoLayerEnergyCut>
-	 <MaxOuterEcalEnergyFraction>0.1</MaxOuterEcalEnergyFraction>
+	 <MaxOuterEcalEnergyFraction>0.05</MaxOuterEcalEnergyFraction>
 	</ArborEmShowerId>
 
 	<PseudoLayerPlugin>
@@ -189,7 +189,7 @@
 
   <algorithm type="NearbyHitRecovery">
 	<NeighborHitsNumber> 40 </NeighborHitsNumber>
-	<MaxHitsDistance> 2000. </MaxHitsDistance>
+	<MaxHitsDistance> 600. </MaxHitsDistance>
 	<tool type="NearbyHitsConnecting" description="CaloHitMergingTool">
 		<MetricType> 0 </MetricType>   <!-- 3D metric -->
 	    <EpsDBSCAN> 100. </EpsDBSCAN>
@@ -201,6 +201,7 @@
   <algorithm type="ClosebySeedMerging">
 	<MergeHCalSeedClusters>false</MergeHCalSeedClusters>
   </algorithm>
+  <!--algorithm type="CheatingClusterCleaning"/-->
 
   <algorithm type="MatchTrackWithStartingCluster"/>
   <algorithm type="ClusterFromTrackMerging"/>
@@ -222,11 +223,56 @@
   <algorithm type="ClusterFromTrackMerging3">
     <MergePhotonClusters> true </MergePhotonClusters>
 	<MergeChargedClusters> false </MergeChargedClusters>
-    <MaxClosestPhotonDistance> 80. </MaxClosestPhotonDistance>
+    <MaxClosestPhotonDistance> 50. </MaxClosestPhotonDistance>
   </algorithm>
   <algorithm type="ClustersMerging">
     <UseEnergyChi> false </UseEnergyChi>
 	<MaxMergingEnergy> 3. </MaxMergingEnergy>
+  </algorithm>
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
+  </algorithm>
+
+<comment>
+  <algorithm type="PhotonClean">
+    <RecordPhotonIDInfo> true </RecordPhotonIDInfo>
+    <RecordPhotonIDResult> true </RecordPhotonIDResult>
+  </algorithm>
+  <algorithm type="CheatingHitRecovery">
+    <ShouldUseMCRecovery> true </ShouldUseMCRecovery>
+	<ShouldUseMCMerge> false </ShouldUseMCMerge>
+	<ClusterListToTakeNewClusters>MergedClustersForPFOCreation</ClusterListToTakeNewClusters>
+  </algorithm>
+</comment>
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
   <algorithm type = "NearbyFragmentsMerging">
@@ -235,32 +281,16 @@
   <algorithm type="ClustersMerging">
     <UseEnergyChi> false </UseEnergyChi>
 	<MaxMergingEnergy> 2. </MaxMergingEnergy>
-  </algorithm>
-
-  <!-- testing from here -->
-
-  <!-- charged fragments merging -->
-  <algorithm type="ClusterFromTrackMerging3">
-    <MergePhotonClusters> false </MergePhotonClusters>
-	<MergeChargedClusters> true </MergeChargedClusters>
-  </algorithm>
-  <algorithm type="ClustersMerging">
-    <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 2. </MaxChi>
-	<MaxMergingEnergy> 3. </MaxMergingEnergy>
 	<MergeIssue> true </MergeIssue>
 	<MergeError> true </MergeError>
   </algorithm>
-
-  <!-- charged fragments merging with larger steering parameters -->
-  <algorithm type="ClusterFromTrackMerging4">
-    <MergePhotonClusters> false </MergePhotonClusters>
-	<MergeChargedClusters> true </MergeChargedClusters>
+  <!-- Redo -->
+  <algorithm type = "NearbyFragmentsMerging">
+    <MaxClosestFragmentDistance> 80. </MaxClosestFragmentDistance>
   </algorithm>
   <algorithm type="ClustersMerging">
-    <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 2. </MaxChi>
-	<MaxMergingEnergy> 1. </MaxMergingEnergy>
+    <UseEnergyChi> false </UseEnergyChi>
+	<MaxMergingEnergy> 2. </MaxMergingEnergy>
 	<MergeIssue> true </MergeIssue>
 	<MergeError> true </MergeError>
   </algorithm>
@@ -282,14 +312,81 @@
   	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
+  <!-- testing from here -->
+
+  <!-- charged fragments merging -->
+  <algorithm type="ClusterFromTrackMerging3">
+    <MergePhotonClusters> false </MergePhotonClusters>
+	<MergeChargedClusters> true </MergeChargedClusters>
+	<DebugOutput> false </DebugOutput>
+	<OnlyUseConnectedHits> true </OnlyUseConnectedHits>
+  </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 2. </MaxChi>
+	<MaxMergingEnergy> 3. </MaxMergingEnergy>
+	<MergeIssue> true </MergeIssue>
+	<MergeError> true </MergeError>
+  </algorithm>
+
 <comment>
-  <algorithm type = "CheatingClusterMergingNew">
-    <MergeNeutral> false </MergeNeutral>
-	<MergeCharged> true </MergeCharged>
-    <MergePhoton> false </MergePhoton>
-	<MergeNeutralHadron> false </MergeNeutralHadron>
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 </comment>
+
+  <!-- charged fragments merging with larger steering parameters -->
+  <algorithm type="ClusterFromTrackMerging4">
+    <MergePhotonClusters> false </MergePhotonClusters>
+	<MergeChargedClusters> true </MergeChargedClusters>
+  </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 2. </MaxChi>
+	<MaxMergingEnergy> 1. </MaxMergingEnergy>
+	<MergeIssue> true </MergeIssue>
+	<MergeError> true </MergeError>
+  </algorithm>
+
+  <algorithm type="FragmentsFinding"/>
+
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>true</ShowAssociatedTracks>
+  </algorithm>
+
+  <algorithm type = "CheatingClusterMergingNew">
+    <MinClusterEnergyToMerge> 0.2 </MinClusterEnergyToMerge>
+    <MergeNeutral> false </MergeNeutral>
+	<MergeCharged> true </MergeCharged>
+    <MergePhoton> true </MergePhoton>
+	<MergeNeutralHadron> true </MergeNeutralHadron>
+  </algorithm>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -328,6 +425,8 @@
     <OutputPfoListName>ArborPfos</OutputPfoListName>                                                                 
   </algorithm>
 
+  <!--algorithm type="ClusterCheck"/-->
+
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>
@@ -345,5 +444,6 @@
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
+
 
 </pandora>
