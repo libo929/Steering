@@ -361,7 +361,7 @@
 	<MergeError> true </MergeError>
   </algorithm>
 
-  <algorithm type="FragmentsFinding"/>
+  <!--algorithm type="FragmentsFinding"/-->
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -380,13 +380,28 @@
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
 
+  <!-- Another trial for merging charged fragments -->
+  <algorithm type="ClusterFromTrackMerging5">
+    <UseMCForPhotonID> true </UseMCForPhotonID>
+	<UseMCForChargeID> false </UseMCForChargeID>
+  </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 5. </MaxChi>
+	<MaxMergingEnergy> 10. </MaxMergingEnergy>
+	<MergeIssue> true </MergeIssue>
+	<MergeError> true </MergeError>
+  </algorithm>
+
+<comment>
   <algorithm type = "CheatingClusterMergingNew">
     <MinClusterEnergyToMerge> 0.2 </MinClusterEnergyToMerge>
     <MergeNeutral> false </MergeNeutral>
 	<MergeCharged> true </MergeCharged>
-    <MergePhoton> true </MergePhoton>
-	<MergeNeutralHadron> true </MergeNeutralHadron>
+    <MergePhoton> false </MergePhoton>
+	<MergeNeutralHadron> false </MergeNeutralHadron>
   </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
