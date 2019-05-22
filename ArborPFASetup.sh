@@ -7,7 +7,7 @@ fi
 export LD_BIND_NOW=1
 
 #unset MARLIN_DLL
-# set shared library paths of mlpack and dlib
+# set shared library paths of mlpack
 export LD_LIBRARY_PATH="/projects/soft/mlpack-3.0.3/lib":$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH="/usr/local/cuda/lib64:/usr/share/man/man7":$LD_LIBRARY_PATH
 

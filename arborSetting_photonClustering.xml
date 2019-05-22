@@ -204,19 +204,35 @@
 
   <algorithm type="MatchTrackWithStartingCluster"/>
   <algorithm type="ClusterFromTrackMerging"/>
-  <algorithm type="ClustersMerging"/>
+  <algorithm type="ClustersMerging">
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
+  </algorithm>
 
   <algorithm type="ClusterFromTrackMerging">
     <MaxStartingClusterDistance> 3000 </MaxStartingClusterDistance>
 	<MaxClusterTrackAngle> 0.3 </MaxClusterTrackAngle>
   </algorithm>
-  <algorithm type="ClustersMerging"/>
+  <algorithm type="ClustersMerging">
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
+  </algorithm>
 
   <algorithm type="ClusterFromTrackMerging2"/>
-  <algorithm type="ClustersMerging"/>
+  <algorithm type="ClustersMerging">
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
+  </algorithm>
 
   <algorithm type="ClusterFromTrackMerging2"/>
-  <algorithm type="ClustersMerging"/>
+  <algorithm type="ClustersMerging">
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
+  </algorithm>
 
   <!-- photon fragment merging -->
   <algorithm type="ClusterFromTrackMerging3">
@@ -227,6 +243,9 @@
   <algorithm type="ClustersMerging">
     <UseEnergyChi> false </UseEnergyChi>
 	<MaxMergingEnergy> 3. </MaxMergingEnergy>
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
   </algorithm>
 
   <algorithm type = "NearbyFragmentsMerging">
@@ -234,7 +253,10 @@
   </algorithm>
   <algorithm type="ClustersMerging">
     <UseEnergyChi> false </UseEnergyChi>
-	<MaxMergingEnergy> 2. </MaxMergingEnergy>
+	<MaxMergingEnergy> 3. </MaxMergingEnergy>
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
   </algorithm>
 
   <!-- testing from here -->
@@ -250,21 +272,20 @@
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 2. </MaxChi>
 	<MaxMergingEnergy> 3. </MaxMergingEnergy>
-	<MergeIssue> true </MergeIssue>
-	<MergeError> true </MergeError>
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
   </algorithm>
 
   <!-- charged fragments merging with larger steering parameters -->
-  <algorithm type="ClusterFromTrackMerging4">
-    <MergePhotonClusters> false </MergePhotonClusters>
-	<MergeChargedClusters> true </MergeChargedClusters>
-  </algorithm>
+  <algorithm type="ClusterFromTrackMerging4"/>
   <algorithm type="ClustersMerging">
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 2. </MaxChi>
 	<MaxMergingEnergy> 1. </MaxMergingEnergy>
-	<MergeIssue> true </MergeIssue>
-	<MergeError> true </MergeError>
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
   </algorithm>
 
   <algorithm type="VisualMonitoring">
@@ -300,6 +321,12 @@
 </comment>
 
 <comment>
+  <algorithm type = "CheatingClusterCleaning"/>
+  <algorithm type = "CheatingHitRecovery">
+    <ClusterListToTakeNewClusters> MergedClustersForPFOCreation </ClusterListToTakeNewClusters>
+  </algorithm>
+</comment>
+
   <algorithm type = "CheatingClusterMergingNew">
     <MinClusterEnergyToMerge> 0.2 </MinClusterEnergyToMerge>
     <MergeNeutral> true </MergeNeutral>
@@ -307,7 +334,6 @@
     <MergePhoton> false </MergePhoton>
 	<MergeNeutralHadron> false </MergeNeutralHadron>
   </algorithm>
-</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
