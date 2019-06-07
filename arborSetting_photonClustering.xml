@@ -203,6 +203,13 @@
   </algorithm>
 
   <algorithm type="MatchTrackWithStartingCluster"/>
+  <!--algorithm type="NeutralFragmentMerging"/-->
+  <algorithm type="ClustersMerging">
+	<UseMCTruth> false </UseMCTruth>
+	<MergeIssue> false </MergeIssue>
+	<MergeError> false </MergeError>
+  </algorithm>
+
   <algorithm type="ClusterFromTrackMerging"/>
   <algorithm type="ClustersMerging">
 	<UseMCTruth> false </UseMCTruth>
@@ -334,17 +341,21 @@
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 5. </MaxChi>
 	<MaxMergingEnergy> 10. </MaxMergingEnergy>
+	<UseMCTruth> true </UseMCTruth>
 	<MergeIssue> true </MergeIssue>
 	<MergeError> true </MergeError>
   </algorithm>
+<comment>
   <algorithm type = "ChargedFragmentsMerging"/>
   <algorithm type="ClustersMerging">
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 5. </MaxChi>
 	<MaxMergingEnergy> 10. </MaxMergingEnergy>
+	<UseMCTruth> true </UseMCTruth>
 	<MergeIssue> true </MergeIssue>
 	<MergeError> true </MergeError>
   </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
