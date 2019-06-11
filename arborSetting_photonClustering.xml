@@ -319,6 +319,7 @@
   </algorithm>
 </comment>
 
+  <algorithm type = "ChargedFragmentsMerging"/>
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>
@@ -336,7 +337,6 @@
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
 
-  <algorithm type = "ChargedFragmentsMerging"/>
   <algorithm type="ClustersMerging">
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 5. </MaxChi>
