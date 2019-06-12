@@ -319,7 +319,10 @@
   </algorithm>
 </comment>
 
-  <algorithm type = "ChargedFragmentsMerging"/>
+  <algorithm type = "ChargedFragmentsMerging">
+    <MaxClosestClusterDistance> 150. </MaxClosestClusterDistance>
+	<DebugOutput> true </DebugOutput>
+  </algorithm>
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>
