@@ -322,6 +322,7 @@
   <algorithm type = "ChargedFragmentsMerging">
     <MaxClosestClusterDistance> 150. </MaxClosestClusterDistance>
 	<DebugOutput> false </DebugOutput>
+	<DebugOutput2> false </DebugOutput2>
   </algorithm>
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -343,6 +344,7 @@
   <algorithm type="ClustersMerging">
     <UseEnergyChi> true </UseEnergyChi>
 	<MaxChi> 5. </MaxChi>
+	<LowEnergyMaxChi> 6. </LowEnergyMaxChi>
 	<MaxMergingEnergy> 10. </MaxMergingEnergy>
 	<UseMCTruth> true </UseMCTruth>
 	<MergeIssue> true </MergeIssue>
