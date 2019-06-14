@@ -203,7 +203,6 @@
   </algorithm>
 
   <algorithm type="MatchTrackWithStartingCluster"/>
-  <!--algorithm type="NeutralFragmentMerging"/-->
   <algorithm type="ClustersMerging">
 	<UseMCTruth> false </UseMCTruth>
 	<MergeIssue> false </MergeIssue>
@@ -285,9 +284,11 @@
   </algorithm>
 
   <algorithm type = "ChargedFragmentsMerging">
-    <MaxClosestClusterDistance> 150. </MaxClosestClusterDistance>
+    <MaxClosestClusterDistance> 30. </MaxClosestClusterDistance>
+	<UseMCPForPID> false </UseMCPForPID>
+	<UseMCPToRejectNeutralCluster> false </UseMCPToRejectNeutralCluster>
 	<DebugOutput> false </DebugOutput>
-	<DebugOutput2> false </DebugOutput2>
+	<DebugOutput2> true </DebugOutput2>
   </algorithm>
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -333,15 +334,15 @@
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
 
-<comment>
+  <!--algorithm type="NeutralFragmentMerging"/-->
+
   <algorithm type = "CheatingClusterMergingNew">
     <MinClusterEnergyToMerge> 0.2 </MinClusterEnergyToMerge>
     <MergeNeutral> true </MergeNeutral>
-	<MergeCharged> false </MergeCharged>
+	<MergeCharged> true </MergeCharged>
     <MergePhoton> false </MergePhoton>
 	<MergeNeutralHadron> false </MergeNeutralHadron>
   </algorithm>
-</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
