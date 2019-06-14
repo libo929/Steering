@@ -284,41 +284,6 @@
 	<MergeError> false </MergeError>
   </algorithm>
 
-  <!-- charged fragments merging with larger steering parameters -->
-<comment>
-  <algorithm type="ClusterFromTrackMerging4"/>
-<comment>
-  <algorithm type="ClusterFromTrackMerging4">
-    <CleanClusterConnection> false </CleanClusterConnection>
-  </algorithm>
-  <algorithm type="NeutralFragmentMerging"/>
-</comment>
-  <algorithm type="VisualMonitoring">
-  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
-  	<ConnectorLevel>Clusters</ConnectorLevel>
-  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
-  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-  	<ShowCurrentTracks>true</ShowCurrentTracks>
-  	<ShowCurrentClusters>true</ShowCurrentClusters>
-  	<ShowCurrentPfos>false</ShowCurrentPfos>
-  	<ShowCurrentVertices>false</ShowCurrentVertices>
-  	<HitColors>iterate</HitColors>
-  	<DisplayEvent>true</DisplayEvent>
-  	<ShowDetector>true</ShowDetector>
-  	<DetectorView>""</DetectorView>
-  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
-  	<ShowAssociatedTracks>true</ShowAssociatedTracks>
-  </algorithm>
-  <algorithm type="ClustersMerging">
-    <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 4. </MaxChi>
-	<MaxMergingEnergy> 4. </MaxMergingEnergy>
-	<UseMCTruth> false </UseMCTruth>
-	<MergeIssue> true </MergeIssue>
-	<MergeError> true </MergeError>
-  </algorithm>
-</comment>
-
   <algorithm type = "ChargedFragmentsMerging">
     <MaxClosestClusterDistance> 150. </MaxClosestClusterDistance>
 	<DebugOutput> false </DebugOutput>
@@ -350,17 +315,6 @@
 	<MergeIssue> true </MergeIssue>
 	<MergeError> true </MergeError>
   </algorithm>
-<comment>
-  <algorithm type = "ChargedFragmentsMerging"/>
-  <algorithm type="ClustersMerging">
-    <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 5. </MaxChi>
-	<MaxMergingEnergy> 10. </MaxMergingEnergy>
-	<UseMCTruth> true </UseMCTruth>
-	<MergeIssue> true </MergeIssue>
-	<MergeError> true </MergeError>
-  </algorithm>
-</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -379,13 +333,15 @@
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
 
+<comment>
   <algorithm type = "CheatingClusterMergingNew">
     <MinClusterEnergyToMerge> 0.2 </MinClusterEnergyToMerge>
     <MergeNeutral> true </MergeNeutral>
-	<MergeCharged> true </MergeCharged>
+	<MergeCharged> false </MergeCharged>
     <MergePhoton> false </MergePhoton>
 	<MergeNeutralHadron> false </MergeNeutralHadron>
   </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
