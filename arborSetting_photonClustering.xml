@@ -288,7 +288,7 @@
 	<UseMCPForPID> false </UseMCPForPID>
 	<UseMCPToRejectNeutralCluster> false </UseMCPToRejectNeutralCluster>
 	<DebugOutput> false </DebugOutput>
-	<DebugOutput2> true </DebugOutput2>
+	<DebugOutput2> false </DebugOutput2>
   </algorithm>
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -309,7 +309,7 @@
 
   <algorithm type="ClustersMerging">
     <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 5. </MaxChi>
+	<MaxChi> 3. </MaxChi>
 	<LowEnergyMaxChi> 6. </LowEnergyMaxChi>
 	<MaxMergingEnergy> 10. </MaxMergingEnergy>
 	<UseMCTruth> true </UseMCTruth>
@@ -342,23 +342,6 @@
 	<MergeCharged> true </MergeCharged>
     <MergePhoton> false </MergePhoton>
 	<MergeNeutralHadron> false </MergeNeutralHadron>
-  </algorithm>
-
-  <algorithm type="VisualMonitoring">
-  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
-  	<ConnectorLevel>Clusters</ConnectorLevel>
-  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
-  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
-  	<ShowCurrentTracks>true</ShowCurrentTracks>
-  	<ShowCurrentClusters>true</ShowCurrentClusters>
-  	<ShowCurrentPfos>false</ShowCurrentPfos>
-  	<ShowCurrentVertices>false</ShowCurrentVertices>
-  	<HitColors>iterate</HitColors>
-  	<DisplayEvent>true</DisplayEvent>
-  	<ShowDetector>true</ShowDetector>
-  	<DetectorView>""</DetectorView>
-  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
-  	<ShowAssociatedTracks>false</ShowAssociatedTracks>
   </algorithm>
 
   <algorithm type = "TrackPreparation">
