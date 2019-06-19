@@ -284,7 +284,8 @@
   </algorithm>
 
   <algorithm type = "ChargedFragmentsMerging">
-    <MaxClosestClusterDistance> 30. </MaxClosestClusterDistance>
+    <MaxClusterPosAxisAngle> 0.1 </MaxClusterPosAxisAngle>
+	<MaxClusterAxesDistance> 100. </MaxClusterAxesDistance>
 	<UseMCPForPID> false </UseMCPForPID>
 	<UseMCPToRejectNeutralCluster> false </UseMCPToRejectNeutralCluster>
 	<DebugOutput> false </DebugOutput>
