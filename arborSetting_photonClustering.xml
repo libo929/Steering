@@ -282,6 +282,22 @@
 	<MergeIssue> false </MergeIssue>
 	<MergeError> false </MergeError>
   </algorithm>
+  <algorithm type="VisualMonitoring">
+  	<ShowCurrentConnectors>true</ShowCurrentConnectors>
+  	<ConnectorLevel>Clusters</ConnectorLevel>
+  	<ShowCurrentMCParticles>true</ShowCurrentMCParticles>
+  	<ShowCurrentCaloHits>true</ShowCurrentCaloHits>
+  	<ShowCurrentTracks>true</ShowCurrentTracks>
+  	<ShowCurrentClusters>true</ShowCurrentClusters>
+  	<ShowCurrentPfos>false</ShowCurrentPfos>
+  	<ShowCurrentVertices>false</ShowCurrentVertices>
+  	<HitColors>iterate</HitColors>
+  	<DisplayEvent>true</DisplayEvent>
+  	<ShowDetector>true</ShowDetector>
+  	<DetectorView>""</DetectorView>
+  	<ShowOnlyAvailable>true</ShowOnlyAvailable>
+  	<ShowAssociatedTracks>true</ShowAssociatedTracks>
+  </algorithm>
 
   <algorithm type = "ChargedFragmentsMerging">
     <MaxClusterPosAxisAngle> 0.1 </MaxClusterPosAxisAngle>
@@ -291,6 +307,17 @@
 	<DebugOutput> false </DebugOutput>
 	<DebugOutput2> false </DebugOutput2>
   </algorithm>
+  <algorithm type="ClustersMerging">
+    <UseEnergyChi> true </UseEnergyChi>
+	<MaxChi> 3. </MaxChi>
+	<LowEnergyMaxChi> 5. </LowEnergyMaxChi>
+	<MaxMergingEnergy> 10. </MaxMergingEnergy>
+	<UseMCTruth> true </UseMCTruth>
+	<MergeIssue> true </MergeIssue>
+	<MergeError> true </MergeError>
+  </algorithm>
+
+
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
   	<ConnectorLevel>Clusters</ConnectorLevel>
@@ -308,22 +335,14 @@
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
   </algorithm>
 
-  <algorithm type="ClustersMerging">
-    <UseEnergyChi> true </UseEnergyChi>
-	<MaxChi> 3. </MaxChi>
-	<LowEnergyMaxChi> 6. </LowEnergyMaxChi>
-	<MaxMergingEnergy> 10. </MaxMergingEnergy>
-	<UseMCTruth> true </UseMCTruth>
-	<MergeIssue> true </MergeIssue>
-	<MergeError> true </MergeError>
-  </algorithm>
-
+<comment>
   <algorithm type = "ChargedFragmentsMerging2"> <!-- in fact, it is for low energy photon tagging -->
     <MaxClusterPosAxisAngle> 0.1 </MaxClusterPosAxisAngle>
 	<MaxClusterAxesDistance> 100. </MaxClusterAxesDistance>
 	<UseMCPForPID> false </UseMCPForPID>
 	<DebugOutput> false </DebugOutput>
 	<DebugOutput2> false </DebugOutput2>
+	<MakeRecord> true </MakeRecord>
   </algorithm>
 
   <algorithm type = "ChargedFragmentsMerging3"> <!-- in fact, it is for low energy charged fragment tagging -->
@@ -331,9 +350,18 @@
 	<MaxClusterAxesDistance> 100. </MaxClusterAxesDistance>
 	<UseMCPForPID> false </UseMCPForPID>
 	<UseMCPToRejectNeutralCluster> false </UseMCPToRejectNeutralCluster>
-	<DebugOutput> true </DebugOutput>
+	<DebugOutput> false </DebugOutput>
 	<DebugOutput2> false </DebugOutput2>
   </algorithm>
+
+  <algorithm type = "CheatingClusterMergingNew">
+    <MinClusterEnergyToMerge> 0. </MinClusterEnergyToMerge>
+    <MergeNeutral> true </MergeNeutral>
+	<MergeCharged> true </MergeCharged>
+    <MergePhoton> false </MergePhoton>
+	<MergeNeutralHadron> false </MergeNeutralHadron>
+  </algorithm>
+</comment>
 
   <algorithm type="VisualMonitoring">
   	<ShowCurrentConnectors>true</ShowCurrentConnectors>
@@ -350,16 +378,6 @@
   	<DetectorView>""</DetectorView>
   	<ShowOnlyAvailable>true</ShowOnlyAvailable>
   	<ShowAssociatedTracks>true</ShowAssociatedTracks>
-  </algorithm>
-
-  <!--algorithm type="NeutralFragmentMerging"/-->
-
-  <algorithm type = "CheatingClusterMergingNew">
-    <MinClusterEnergyToMerge> 0. </MinClusterEnergyToMerge>
-    <MergeNeutral> false </MergeNeutral>
-	<MergeCharged> true </MergeCharged>
-    <MergePhoton> false </MergePhoton>
-	<MergeNeutralHadron> false </MergeNeutralHadron>
   </algorithm>
 
   <algorithm type = "TrackPreparation">
